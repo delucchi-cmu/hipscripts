@@ -1,0 +1,7 @@
+name,type
+MatchID,Int64
+Filter,str
+Detector,str
+n,Int64
+MagMed,float
+MagMAD,float
