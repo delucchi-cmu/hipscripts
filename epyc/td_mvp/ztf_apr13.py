@@ -23,6 +23,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import ParquetReader
+from dask.distributed import Client
 
 
 
@@ -32,7 +33,7 @@ REPEATED_COLUMNS = [
     "ps1_objid", "ra", "dec", "ps1_gMeanPSFMag", "ps1_rMeanPSFMag", "ps1_iMeanPSFMag",
     "nobs_g", "nobs_r", "nobs_i","mean_mag_g","mean_mag_r","mean_mag_i"]
 
-def import_objects():
+def import_objects(client):
     args = ImportArguments(
         catalog_name="ztf_dr14",
         input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
@@ -53,7 +54,7 @@ def import_objects():
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr13/",
     )
-    runner.run(args)
+    runner.run_with_client(args, client=client)
 
 def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
     """Explode repeating detections"""
@@ -104,7 +105,7 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
 
     return explodey
 
-def import_sources():
+def import_sources(client):
     args = ImportArguments(
         catalog_name="ztf_source",
         input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
@@ -126,8 +127,34 @@ def import_sources():
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr13/",
     )
-    runner.run(args)
+    runner.run_with_client(args, client=client)
+
+import hipscat_import.association.run_association as a_runner
+from hipscat_import.association.arguments import AssociationArguments
+
+def create_association():
+    args = AssociationArguments(
+        primary_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr13/ztf_dr14",
+        primary_id_column="ps1_objid",
+        primary_join_column="ps1_objid",
+        join_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr13/ztf_source",
+        join_id_column="ps1_objid",
+        join_foreign_key="ps1_objid",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr13/",
+        output_catalog_name="ztf_object_to_source",
+        tmp_dir="/data3/epyc/data3/hipscat/tmp/",
+        dask_tmp="/data3/epyc/data3/hipscat/tmp/",
+        overwrite=True,
+    )
+    a_runner.run_with_client(args)
 
 if __name__ == "__main__":
-    # import_objects()
-    import_sources()
+
+    with Client(
+        local_directory="/data3/epyc/data3/hipscat/tmp/",
+        n_workers=10,
+        threads_per_worker=10,
+    ) as client:
+        # import_objects(client)
+        # import_sources(client)
+        create_association()
