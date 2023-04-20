@@ -64,7 +64,7 @@ def import_objects(client):
 
 def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
     """Explode repeating detections"""
-    data = data[data.dup == 0].drop(["dup"])
+    data = data[data.dup == 0].drop(["dup"], axis=1)
 
     ## band-specific columns to timedomain_columns
     g_column_map = {"catflags_g":"catflags",
@@ -106,7 +106,7 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
     explodey = pd.concat([just_i, just_g, just_r]).explode(explode_columns)
     explodey = explodey[explodey['mag'].notna()]
     explodey = explodey.sort_values(["ps1_objid", 'band', "mjd"])
-    print("explodey size (nan-filtered)", len(explodey))
+    # print("explodey size (nan-filtered)", len(explodey))
 
     explodey = explodey.reset_index()
 
@@ -115,7 +115,8 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
 def import_sources(client):
     args = ImportArguments(
         catalog_name="ztf_source",
-        input_file_list=["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00193-shard-7.parquet"],
+        # input_file_list=["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00193-shard-7.parquet"],
+        input_path="/data3/epyc/data3/hipscat/raw/ztf_shards/",
         input_format="parquet",
         file_reader=ParquetReader(
             chunksize=100_000
@@ -161,8 +162,8 @@ if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=10,
-        threads_per_worker=10,
+        threads_per_worker=1,
     ) as client:
-        import_objects(client)
-        # import_sources(client)
+        # import_objects(client)
+        import_sources(client)
         # create_association()
