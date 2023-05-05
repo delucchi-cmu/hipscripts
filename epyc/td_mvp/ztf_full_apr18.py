@@ -124,15 +124,15 @@ def import_sources(client):
         ra_column="ra",
         dec_column="dec",
         id_column="ps1_objid",
-        pixel_threshold=1_000_000,
+        pixel_threshold=10_000_000,
         tmp_dir="/data3/epyc/data3/hipscat/tmp/",
         overwrite=True,
         highest_healpix_order=10,
         filter_function=transform_sources,
         # debug_stats_only=True,
         # progress_bar=False,
-        resume=False,
-        dask_n_workers=10,
+        resume=True,
+        dask_n_workers=48,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/",
     )
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=10,
+        n_workers=48,
         threads_per_worker=1,
     ) as client:
         # import_objects(client)
