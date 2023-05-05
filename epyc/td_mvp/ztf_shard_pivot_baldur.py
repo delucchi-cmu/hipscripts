@@ -70,16 +70,15 @@ def per_file(in_path, out_path):
 
 
 def transform(client):
-    # file_names = ["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00128-shard-6.parquet",
-    #                "/data3/epyc/data3/hipscat/raw/ztf_shards/part-00128-shard-7.parquet"]
-    in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards/**parquet")
+    in_file_paths = glob.glob("/epyc/data3/hipscat/raw/ztf_shards/**parquet")
     in_file_names = [os.path.basename(file_name) for file_name in in_file_paths]
     in_file_names = set(in_file_names)
-    out_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet")
+    out_file_paths = glob.glob("/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet")
     out_file_names = [os.path.basename(file_name) for file_name in out_file_paths]
     out_file_names = set(out_file_names)
 
     target_file_names = in_file_names.difference(out_file_names)
+    target_file_names = [file_name  for file_name in target_file_names if file_name.__hash__() %2==0]
     print(len(target_file_names))
 
     futures = []
@@ -87,8 +86,8 @@ def transform(client):
         futures.append(
             client.submit(
             per_file, 
-            in_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards/", file_name),
-            out_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", file_name)
+            in_path = os.path.join("/epyc/data3/hipscat/raw/ztf_shards/", file_name),
+            out_path = os.path.join("/epyc/data3/hipscat/raw/ztf_shards_pivot/", file_name)
             )
         )
     for _ in tqdm(
@@ -115,7 +114,7 @@ def send_completion_email():
 if __name__ == "__main__":
 
     with Client(
-        local_directory="/data3/epyc/data3/hipscat/tmp/",
+        local_directory="/epyc/data3/hipscat/tmp/baldur",
         n_workers=42,
         threads_per_worker=1,
     ) as client:
