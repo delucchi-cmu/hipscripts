@@ -1,13 +1,6 @@
 import pandas as pd
 
-import hipscat_import.catalog.run_import as runner
-import pandas as pd
-import pyarrow as pa
 import glob
-import pyarrow.parquet as pq
-from hipscat_import.catalog.arguments import ImportArguments
-from hipscat_import.catalog.file_readers import ParquetReader
-from dask.distributed import Client
 import os
 from dask.distributed import Client, as_completed
 from tqdm import tqdm
@@ -68,25 +61,34 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
 
     return explodey
 
-def per_file(file_name):
-    name_only = os.path.basename(file_name)
-    data_frame = pd.read_parquet(file_name, engine="pyarrow")
+def per_file(in_path, out_path):
+    data_frame = pd.read_parquet(in_path, engine="pyarrow")
     explodey = transform_sources(data_frame)
 
-    new_name = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", name_only)
-    explodey.to_parquet(new_name)
+    explodey.to_parquet(out_path)
+    del data_frame, explodey
 
 
 def transform(client):
     # file_names = ["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00128-shard-6.parquet",
     #                "/data3/epyc/data3/hipscat/raw/ztf_shards/part-00128-shard-7.parquet"]
-    file_names = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards/**parquet")
+    in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards/**parquet")
+    in_file_names = [os.path.basename(file_name) for file_name in in_file_paths]
+    in_file_names = set(in_file_names)
+    out_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet")
+    out_file_names = [os.path.basename(file_name) for file_name in out_file_paths]
+    out_file_names = set(out_file_names)
+
+    target_file_names = in_file_names.difference(out_file_names)
+    print(len(target_file_names))
+
     futures = []
-    for file_path in file_names:
+    for file_name in target_file_names:
         futures.append(
             client.submit(
             per_file, 
-            file_name = file_path,
+            in_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards/", file_name),
+            out_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", file_name)
             )
         )
     for _ in tqdm(
@@ -96,6 +98,20 @@ def transform(client):
     ):
         pass
 
+
+def send_completion_email():
+    import smtplib
+    from email.message import EmailMessage
+    msg = EmailMessage()
+    msg['Subject'] = f'epyc execution complete. eom.'
+    msg['From'] = 'delucchi@gmail.com'
+    msg['To'] = 'delucchi@andrew.cmu.edu'
+
+    # Send the message via our own SMTP server.
+    s = smtplib.SMTP('localhost')
+    s.send_message(msg)
+    s.quit()
+
 if __name__ == "__main__":
 
     with Client(
@@ -104,3 +120,4 @@ if __name__ == "__main__":
         threads_per_worker=1,
     ) as client:
         transform(client)
+        send_completion_email()
