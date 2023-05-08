@@ -4,6 +4,8 @@ import glob
 import os
 from dask.distributed import Client, as_completed
 from tqdm import tqdm
+import pyarrow as pa 
+import pyarrow.parquet as pq
 
 #### -----------------
 ## Columns that will be repeated per object
@@ -61,12 +63,22 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
 
     return explodey
 
-def per_file(in_path, out_path):
-    data_frame = pd.read_parquet(in_path, engine="pyarrow")
-    explodey = transform_sources(data_frame)
+def per_file(file_name):
+    in_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards/", file_name)
 
-    explodey.to_parquet(out_path)
-    del data_frame, explodey
+    file_minus = file_name[0:-8]
+    parquet_file = pq.read_table(in_path)
+    index = 1
+    for smaller_table in parquet_file.to_batches(max_chunksize=50_000):
+        out_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", f"{file_minus}-sub-{index}.parquet")
+        if  os.path.exists(out_path):
+            continue
+
+        data_frame = pa.Table.from_batches([smaller_table]).to_pandas()
+        explodey = transform_sources(data_frame)        
+        explodey.to_parquet(out_path)
+        index += 1
+        del data_frame, explodey
 
 
 def transform(client):
@@ -78,31 +90,48 @@ def transform(client):
     out_file_names = set(out_file_names)
 
     target_file_names = in_file_names.difference(out_file_names)
-    target_file_names = [file_name  for file_name in target_file_names if file_name.__hash__() %2==1]
+    # target_file_names = [file_name  for file_name in target_file_names if file_name.__hash__() %2==1]
     print(len(target_file_names))
+    # target_file_names = ["part-00494-shard-1.parquet"]
 
     futures = []
     for file_name in target_file_names:
         futures.append(
             client.submit(
-            per_file, 
-            in_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards/", file_name),
-            out_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", file_name)
+            per_file,
+            file_name,
             )
         )
+    complete = 0
     for _ in tqdm(
         as_completed(futures),
         desc="transforming",
         total=len(futures)
     ):
+        complete +=1
+        if complete %1_000 == 0:
+            send_progress_email(complete)
         pass
 
+
+def send_progress_email(num_complete):
+    import smtplib
+    from email.message import EmailMessage
+    msg = EmailMessage()
+    msg['Subject'] = f'epyc pivot execution PROGRESSING {num_complete}.'
+    msg['From'] = 'delucchi@gmail.com'
+    msg['To'] = 'delucchi@andrew.cmu.edu'
+
+    # Send the message via our own SMTP server.
+    s = smtplib.SMTP('localhost')
+    s.send_message(msg)
+    s.quit()
 
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
+    msg['Subject'] = f'epyc pivot execution complete. eom.'
     msg['From'] = 'delucchi@gmail.com'
     msg['To'] = 'delucchi@andrew.cmu.edu'
 
