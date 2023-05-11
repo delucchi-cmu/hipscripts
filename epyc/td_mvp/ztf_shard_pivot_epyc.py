@@ -74,17 +74,25 @@ def per_file(file_name):
         if  os.path.exists(out_path):
             continue
 
-        data_frame = pa.Table.from_batches([smaller_table]).to_pandas()
-        explodey = transform_sources(data_frame)        
-        explodey.to_parquet(out_path)
-        del data_frame, explodey
+        sub_table = pa.Table.from_batches([smaller_table])
+        small = 1
+        for even_smaller in sub_table.to_batches(max_chunksize=10_000):
+            out_path = os.path.join("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/", f"{file_minus}-sub-{index}-small-{small}.parquet")
+            small += 1
+            if os.path.exists(out_path):
+                continue
+            data_frame = pa.Table.from_batches([even_smaller]).to_pandas()
+            explodey = transform_sources(data_frame)        
+            explodey.to_parquet(out_path)
+            del data_frame, explodey
 
 
 def transform(client):
     in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards/**parquet")
-    # in_file_paths = ["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00499-shard-10.parquet"]
+    # in_file_paths = ["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00028-shard-16.parquet"]
     in_file_names = [os.path.basename(file_name) for file_name in in_file_paths]
-    in_file_names = set(in_file_names)
+    # in_file_names = set(in_file_names)
+    in_file_names.sort()
 
     futures = []
     for file_name in in_file_names:
@@ -136,7 +144,7 @@ if __name__ == "__main__":
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=2,
+        n_workers=42,
         threads_per_worker=1,
     ) as client:
         transform(client)
