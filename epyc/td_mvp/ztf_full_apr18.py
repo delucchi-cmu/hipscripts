@@ -64,7 +64,7 @@ def import_objects(client):
 
 def import_sources(client):
     args = ImportArguments(
-        catalog_name="ztf_source",
+        output_catalog_name="ztf_source",
         # input_file_list=["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00193-shard-7.parquet"],
         input_path="/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/",
         input_format="parquet",
@@ -73,12 +73,12 @@ def import_sources(client):
         id_column="ps1_objid",
         pixel_threshold=2_000_000,
         tmp_dir="/data3/epyc/data3/hipscat/tmp/",
-        # overwrite=True,
+        overwrite=True,
         highest_healpix_order=11,
         # resume=True,
         dask_n_workers=48,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
-        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_may18/",
     )
     runner.run_with_client(args, client=client)
 
@@ -90,10 +90,10 @@ def create_association():
         primary_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/ztf_dr14",
         primary_id_column="ps1_objid",
         primary_join_column="ps1_objid",
-        join_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/ztf_source",
+        join_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ztf_may18/ztf_source",
         join_id_column="ps1_objid",
         join_foreign_key="ps1_objid",
-        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_may18/",
         output_catalog_name="ztf_object_to_source",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/",
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=48,
+        n_workers=42,
         threads_per_worker=1,
     ) as client:
         # import_objects(client)
