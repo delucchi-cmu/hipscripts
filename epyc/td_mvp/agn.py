@@ -94,19 +94,20 @@ def do_import():
     ]
     with tempfile.TemporaryDirectory() as tmp_dir:
         args = ImportArguments(
-            catalog_name="dr16q",
+            output_catalog_name="dr16q_constant",
             input_file_list=[filename],
             file_reader=FitsReader(
                 chunksize=50_000,
                 skip_column_names=multidimensional,
             ),
+            input_format="fits",
             ra_column="RA",
             dec_column="DEC",
             id_column="SDSS_NAME",
             pixel_threshold=100_000,
             tmp_dir=tmp_dir,
             overwrite=True,
-            highest_healpix_order=2,
+            constant_healpix_order=5,
             dask_n_workers=1,
             dask_threads_per_worker=1,
             dask_tmp=tmp_dir,

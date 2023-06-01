@@ -4,6 +4,8 @@ import glob
 import os
 from dask.distributed import Client, as_completed
 from tqdm import tqdm
+import pyarrow as pa 
+import pyarrow.parquet as pq
 
 #### -----------------
 ## Columns that will be repeated per object
@@ -55,55 +57,74 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
     explodey = pd.concat([just_i, just_g, just_r]).explode(explode_columns)
     explodey = explodey[explodey['mag'].notna()]
     explodey = explodey.sort_values(["ps1_objid", 'band', "mjd"])
-    # print("explodey size (nan-filtered)", len(explodey))
 
     explodey = explodey.reset_index()
 
     return explodey
 
-def per_file(in_path, out_path):
-    data_frame = pd.read_parquet(in_path, engine="pyarrow")
-    explodey = transform_sources(data_frame)
+def per_file(file_index):
+    input_pattern = f'/data/epyc/projects/lsd2/pzwarehouse/ztf_dr14/part-{str(file_index).zfill(5)}*'
+    
+    input_paths = glob.glob(input_pattern)
+    if(len(input_paths) != 1):
+        print(f'BAD PATHS at {input_pattern}')
+        return
+    
+    parquet_file = pq.read_table(input_paths[0])
 
-    explodey.to_parquet(out_path)
-    del data_frame, explodey
+    for index, smaller_table in enumerate(parquet_file.to_batches(max_chunksize=25_000)):
+        print("starting_index", index)
+        out_path = os.path.join("/data3/epyc/data3/hipscat/raw/axs_ztf_shards_pivot/", f"part-{str(file_index).zfill(5)}-sub-{str(index).zfill(3)}.parquet")
+        if  os.path.exists(out_path):
+            continue
+
+        data_frame = pa.Table.from_batches([smaller_table]).to_pandas()
+        explodey = transform_sources(data_frame)        
+        explodey.to_parquet(out_path)
+        del data_frame, explodey
+        print("finished_index", index)
 
 
 def transform(client):
-    in_file_paths = glob.glob("/epyc/data3/hipscat/raw/ztf_shards/**parquet")
-    in_file_names = [os.path.basename(file_name) for file_name in in_file_paths]
-    in_file_names = set(in_file_names)
-    out_file_paths = glob.glob("/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet")
-    out_file_names = [os.path.basename(file_name) for file_name in out_file_paths]
-    out_file_names = set(out_file_names)
-
-    target_file_names = in_file_names.difference(out_file_names)
-    target_file_names = [file_name  for file_name in target_file_names if file_name.__hash__() %2==0]
-    print(len(target_file_names))
-
     futures = []
-    for file_name in target_file_names:
+    for file_index in range(0,1):
         futures.append(
             client.submit(
-            per_file, 
-            in_path = os.path.join("/epyc/data3/hipscat/raw/ztf_shards/", file_name),
-            out_path = os.path.join("/epyc/data3/hipscat/raw/ztf_shards_pivot/", file_name)
+            per_file,
+            file_index,
             )
         )
+    complete = 0
     for _ in tqdm(
         as_completed(futures),
         desc="transforming",
         total=len(futures)
     ):
+        complete +=1
+        if complete %50 == 0:
+            send_progress_email(complete)
         pass
 
+
+def send_progress_email(num_complete):
+    import smtplib
+    from email.message import EmailMessage
+    msg = EmailMessage()
+    msg['Subject'] = f'epyc pivot execution PROGRESSING {num_complete}.'
+    msg['From'] = 'updates@lsdb.io'
+    msg['To'] = 'delucchi@andrew.cmu.edu'
+
+    # Send the message via our own SMTP server.
+    s = smtplib.SMTP('localhost')
+    s.send_message(msg)
+    s.quit()
 
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'delucchi@gmail.com'
+    msg['Subject'] = f'epyc pivot execution complete. eom.'
+    msg['From'] = 'updates@lsdb.io'
     msg['To'] = 'delucchi@andrew.cmu.edu'
 
     # Send the message via our own SMTP server.
@@ -114,8 +135,8 @@ def send_completion_email():
 if __name__ == "__main__":
 
     with Client(
-        local_directory="/epyc/data3/hipscat/tmp/baldur",
-        n_workers=42,
+        local_directory="/data3/epyc/data3/hipscat/tmp/",
+        n_workers=10,
         threads_per_worker=1,
     ) as client:
         transform(client)

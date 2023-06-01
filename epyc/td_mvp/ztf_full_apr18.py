@@ -75,7 +75,7 @@ def import_sources(client):
         tmp_dir="/data3/epyc/data3/hipscat/tmp/",
         overwrite=True,
         highest_healpix_order=11,
-        # resume=True,
+        resume=True,
         dask_n_workers=48,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_may18/",

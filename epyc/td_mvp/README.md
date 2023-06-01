@@ -20,6 +20,14 @@ cd $TD_MVP_DIR
 python agn.py
 ```
 
+The "constant" pipeline ran with a single worker, and had runtime like:
+
+```
+real    4m57.939s
+user    5m28.340s
+sys     0m56.030s
+```
+
 ## ZTF
 
 Make a pilot version of the catalog, using a single pixel, just to verify that we can
