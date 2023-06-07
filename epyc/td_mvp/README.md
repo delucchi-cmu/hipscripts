@@ -40,5 +40,10 @@ mkdir /data3/epyc/data3/hipscat/catalogs/ztf_apr13
 
 ## PanSTARRS
 
+### detection
+
+real    5351m9.433s
+user    34341m30.827s
+sys     6731m22.640s
 
 ## SDSS

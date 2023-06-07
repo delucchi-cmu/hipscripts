@@ -73,7 +73,6 @@ def per_file(file_index):
     parquet_file = pq.read_table(input_paths[0])
 
     for index, smaller_table in enumerate(parquet_file.to_batches(max_chunksize=25_000)):
-        print("starting_index", index)
         out_path = os.path.join("/data3/epyc/data3/hipscat/raw/axs_ztf_shards_pivot/", f"part-{str(file_index).zfill(5)}-sub-{str(index).zfill(3)}.parquet")
         if  os.path.exists(out_path):
             continue
@@ -82,12 +81,11 @@ def per_file(file_index):
         explodey = transform_sources(data_frame)        
         explodey.to_parquet(out_path)
         del data_frame, explodey
-        print("finished_index", index)
 
 
 def transform(client):
     futures = []
-    for file_index in range(0,1):
+    for file_index in range(0, 500):
         futures.append(
             client.submit(
             per_file,

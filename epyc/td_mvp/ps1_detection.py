@@ -65,7 +65,7 @@ def import_objects(client):
         # debug_stats_only=True,
         dask_n_workers=20,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
-        output_path="/data3/epyc/data3/hipscat/catalogs/td_mvp_test/",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ps1/",
     )
     runner.run_with_client(args, client=client)
 
