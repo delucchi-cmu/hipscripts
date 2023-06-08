@@ -69,12 +69,32 @@ def import_objects(client):
     )
     runner.run_with_client(args, client=client)
 
+import hipscat_import.association.run_association as a_runner
+from hipscat_import.association.arguments import AssociationArguments
+
+def create_association():
+    args = AssociationArguments(
+        primary_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ps1/ps1_otmo",
+        primary_id_column="objID",
+        primary_join_column="objID",
+        join_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ps1/ps1_detection",
+        join_id_column="objID",
+        join_foreign_key="objID",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ps1/",
+        output_catalog_name="ps1_otmo_to_detection",
+        tmp_dir="/data3/epyc/data3/hipscat/tmp/ps1/",
+        dask_tmp="/data3/epyc/data3/hipscat/tmp/ps1/",
+        compute_partition_size=1024*1024*1024,
+        overwrite=True,
+    )
+    a_runner.run(args)
+
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
     msg = EmailMessage()
     msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'delucchi@gmail.com'
+    msg['From'] = 'updates@lsdb.io'
     msg['To'] = 'delucchi@andrew.cmu.edu'
 
     # Send the message via our own SMTP server.
@@ -86,10 +106,10 @@ if __name__ == "__main__":
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=10,
+        n_workers=30,
         threads_per_worker=1,
     ) as client:
         # import_objects(client)
-        import_objects(client)
-        # create_association()
+        # import_objects(client)
+        create_association()
         send_completion_email()
