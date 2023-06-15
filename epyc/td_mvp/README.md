@@ -37,6 +37,7 @@ create the right structure.
 mkdir /data3/epyc/data3/hipscat/catalogs/ztf_apr13
 ```
 
+and this has all been a huge pain in my butt.
 
 ## PanSTARRS
 
@@ -47,3 +48,43 @@ user    34341m30.827s
 sys     6731m22.640s
 
 ## SDSS
+
+
+## zubercal
+
+### bands
+
+zubercal files are split into parquet files by ra/dec/band. 
+
+the band is included in the file name, so we can use a regular expression to extract the 
+band, and add it as a column to our data when we read it in. no big whoop - and the way 
+we've structured the filereader stuff, it's pretty easy to sneak it in.
+
+### duplicate index
+
+the pre-existing pandas index contains duplicates for some files. this is a little frustrating.
+
+this breaks down at the map_reduce line:
+
+```
+filtered_data = data.filter(items=data_indexes, axis=0)
+```
+
+With a ValueError - cannot reindex on an axis with duplicate labels
+
+The quickest way I could think to work around this is to ignore the pandas index column when
+we read in the parquet files. so just use the 10 columns we DO want.
+
+mjd
+mag
+objdec
+objra
+magerr
+objectid
+info
+flag
+rcidin
+fieldid
+
+this seems to work. and i'm not sure what the best long-term strategy is here. i want to look
+more into the duplicated indexes and see if it's really a problem.
