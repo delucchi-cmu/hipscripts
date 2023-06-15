@@ -104,9 +104,22 @@ def send_completion_email():
 
 if __name__ == "__main__":
 
+
+    import ray
+    from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
+
+    context = ray.init(
+        num_cpus=12,
+        _temp_dir="/data3/epyc/projects3/mmd11_hipscat/ray_spill",
+    )
+
+    enable_dask_on_ray()
+
+    # do any dask stuff and it will run on ray
+
     with Client(
-        local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=30,
+        local_directory="/data3/epyc/projects3/mmd11_hipscat/ray_spill",
+        n_workers=12,
         threads_per_worker=1,
     ) as client:
         # import_objects(client)

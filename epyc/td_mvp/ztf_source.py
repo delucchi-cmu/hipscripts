@@ -22,7 +22,7 @@ def import_sources(client):
         ra_column="ra",
         dec_column="dec",
         id_column="ps1_objid",
-        pixel_threshold=1_000_000,
+        pixel_threshold=4_000_000,
         tmp_dir="/data3/epyc/data3/hipscat/tmp/ztf_jun01/",
         overwrite=True,
         highest_healpix_order=10,
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=10,
+        n_workers=30,
         threads_per_worker=1,
     ) as client:
         import_sources(client)
