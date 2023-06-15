@@ -1,4 +1,3 @@
-
 import pandas as pd
 
 import hipscat_import.catalog.run_import as runner
@@ -10,8 +9,8 @@ from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import CsvReader
 from dask.distributed import Client
 
-def import_objects(client):
 
+def import_objects(client):
     use_columns = [
         "objID",
         "uniquePspsP2id",
@@ -38,7 +37,9 @@ def import_objects(client):
     type_map = dict(zip(type_frame["name"], type_frame["type"]))
     type_names = type_frame["name"].values.tolist()
 
-    in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/pan_starrs/detection/detection**.csv")
+    in_file_paths = glob.glob(
+        "/data3/epyc/data3/hipscat/raw/pan_starrs/detection/detection**.csv"
+    )
     in_file_paths.sort()
     print(len(in_file_paths))
     args = ImportArguments(
@@ -47,12 +48,12 @@ def import_objects(client):
         input_format="csv",
         file_reader=CsvReader(
             header=None,
-            index_col=False, 
+            index_col=False,
             column_names=type_names,
             # names=type_names,
             type_map=type_map,
             chunksize=250_000,
-            usecols=use_columns
+            usecols=use_columns,
         ),
         ra_column="ra",
         dec_column="dec",
@@ -69,8 +70,10 @@ def import_objects(client):
     )
     runner.run_with_client(args, client=client)
 
+
 import hipscat_import.association.run_association as a_runner
 from hipscat_import.association.arguments import AssociationArguments
+
 
 def create_association():
     args = AssociationArguments(
@@ -84,27 +87,28 @@ def create_association():
         output_catalog_name="ps1_otmo_to_detection",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/ps1/",
         dask_tmp="/data3/epyc/data3/hipscat/tmp/ps1/",
-        compute_partition_size=1024*1024*1024,
+        compute_partition_size=1024 * 1024 * 1024,
         overwrite=True,
     )
     a_runner.run(args)
 
+
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
+
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'updates@lsdb.io'
-    msg['To'] = 'delucchi@andrew.cmu.edu'
+    msg["Subject"] = f"epyc execution complete. eom."
+    msg["From"] = "updates@lsdb.io"
+    msg["To"] = "delucchi@andrew.cmu.edu"
 
     # Send the message via our own SMTP server.
-    s = smtplib.SMTP('localhost')
+    s = smtplib.SMTP("localhost")
     s.send_message(msg)
     s.quit()
 
+
 if __name__ == "__main__":
-
-
     import ray
     from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
 

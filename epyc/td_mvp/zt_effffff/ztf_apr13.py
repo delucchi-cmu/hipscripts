@@ -26,20 +26,33 @@ from hipscat_import.catalog.file_readers import ParquetReader
 from dask.distributed import Client
 
 
-
 #### -----------------
 ## Columns that will be repeated per object
 REPEATED_COLUMNS = [
-    "ps1_objid", "ra", "dec", "ps1_gMeanPSFMag", "ps1_rMeanPSFMag", "ps1_iMeanPSFMag",
-    "nobs_g", "nobs_r", "nobs_i","mean_mag_g","mean_mag_r","mean_mag_i"]
+    "ps1_objid",
+    "ra",
+    "dec",
+    "ps1_gMeanPSFMag",
+    "ps1_rMeanPSFMag",
+    "ps1_iMeanPSFMag",
+    "nobs_g",
+    "nobs_r",
+    "nobs_i",
+    "mean_mag_g",
+    "mean_mag_r",
+    "mean_mag_i",
+]
+
 
 def import_objects(client):
     args = ImportArguments(
         catalog_name="ztf_dr14",
-        input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
+        input_file_list=[
+            "/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"
+        ],
         file_reader=ParquetReader(
-        chunksize=50_000,
-        columns=REPEATED_COLUMNS,
+            chunksize=50_000,
+            columns=REPEATED_COLUMNS,
         ),
         ra_column="ra",
         dec_column="dec",
@@ -56,62 +69,70 @@ def import_objects(client):
     )
     runner.run_with_client(args, client=client)
 
+
 def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
     """Explode repeating detections"""
 
     ## band-specific columns to timedomain_columns
-    g_column_map = {"catflags_g":"catflags",
-                            "fieldID_g" : "fieldID", 
-                            "mag_g":"mag",
-                            "magerr_g":"magerr",
-                            "mjd_g":"mjd", 
-                            "rcID_g":"rcID"}
+    g_column_map = {
+        "catflags_g": "catflags",
+        "fieldID_g": "fieldID",
+        "mag_g": "mag",
+        "magerr_g": "magerr",
+        "mjd_g": "mjd",
+        "rcID_g": "rcID",
+    }
     g_columns = list(g_column_map.keys())
-    r_column_map = {"catflags_r":"catflags",
-                            "fieldID_r" : "fieldID", 
-                            "mag_r":"mag",
-                            "magerr_r":"magerr",
-                            "mjd_r":"mjd", 
-                            "rcID_r":"rcID"}
+    r_column_map = {
+        "catflags_r": "catflags",
+        "fieldID_r": "fieldID",
+        "mag_r": "mag",
+        "magerr_r": "magerr",
+        "mjd_r": "mjd",
+        "rcID_r": "rcID",
+    }
     r_columns = list(r_column_map.keys())
-    i_column_map = {"catflags_i":"catflags",
-                            "fieldID_i" : "fieldID", 
-                            "mag_i":"mag",
-                            "magerr_i":"magerr",
-                            "mjd_i":"mjd", 
-                            "rcID_i":"rcID"}
+    i_column_map = {
+        "catflags_i": "catflags",
+        "fieldID_i": "fieldID",
+        "mag_i": "mag",
+        "magerr_i": "magerr",
+        "mjd_i": "mjd",
+        "rcID_i": "rcID",
+    }
     i_columns = list(i_column_map.keys())
 
     explode_columns = list(g_column_map.values())
 
-    just_i = data[REPEATED_COLUMNS+i_columns]
+    just_i = data[REPEATED_COLUMNS + i_columns]
     just_i = just_i.rename(columns=i_column_map)
-    just_i['band'] = 'i'
+    just_i["band"] = "i"
 
-    just_g = data[REPEATED_COLUMNS+g_columns]
+    just_g = data[REPEATED_COLUMNS + g_columns]
     just_g = just_g.rename(columns=g_column_map)
-    just_g['band'] = 'g'
+    just_g["band"] = "g"
 
-    just_r = data[REPEATED_COLUMNS+r_columns]
+    just_r = data[REPEATED_COLUMNS + r_columns]
     just_r = just_r.rename(columns=r_column_map)
-    just_r['band'] = 'r'
+    just_r["band"] = "r"
 
     explodey = pd.concat([just_i, just_g, just_r]).explode(explode_columns)
-    explodey = explodey[explodey['mag'].notna()]
-    explodey = explodey.sort_values(["ps1_objid", 'band', "mjd"])
+    explodey = explodey[explodey["mag"].notna()]
+    explodey = explodey.sort_values(["ps1_objid", "band", "mjd"])
     print("explodey size (nan-filtered)", len(explodey))
 
     explodey = explodey.reset_index()
 
     return explodey
 
+
 def import_sources(client):
     args = ImportArguments(
         catalog_name="ztf_source",
-        input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
-        file_reader=ParquetReader(
-            chunksize=100_000
-        ),
+        input_file_list=[
+            "/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"
+        ],
+        file_reader=ParquetReader(chunksize=100_000),
         ra_column="ra",
         dec_column="dec",
         id_column="ps1_objid",
@@ -129,8 +150,10 @@ def import_sources(client):
     )
     runner.run_with_client(args, client=client)
 
+
 import hipscat_import.association.run_association as a_runner
 from hipscat_import.association.arguments import AssociationArguments
+
 
 def create_association():
     args = AssociationArguments(
@@ -148,8 +171,8 @@ def create_association():
     )
     a_runner.run_with_client(args)
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=10,

@@ -30,11 +30,24 @@ def filter_duplicates(data: pd.DataFrame) -> pd.DataFrame:
     """Remove rows where dup is true"""
     return data[data.dup == 0].drop(["dup"], axis=1)
 
+
 #### -----------------
 ## Columns that will be repeated per object
 REPEATED_COLUMNS = [
-    "ps1_objid", "ra", "dec", "ps1_gMeanPSFMag", "ps1_rMeanPSFMag", "ps1_iMeanPSFMag",
-    "nobs_g", "nobs_r", "nobs_i","mean_mag_g","mean_mag_r","mean_mag_i"]
+    "ps1_objid",
+    "ra",
+    "dec",
+    "ps1_gMeanPSFMag",
+    "ps1_rMeanPSFMag",
+    "ps1_iMeanPSFMag",
+    "nobs_g",
+    "nobs_r",
+    "nobs_i",
+    "mean_mag_g",
+    "mean_mag_r",
+    "mean_mag_i",
+]
+
 
 def import_objects(client):
     args = ImportArguments(
@@ -43,8 +56,9 @@ def import_objects(client):
         input_path="/data3/epyc/data3/hipscat/raw/ztf_shards/",
         input_format="parquet",
         file_reader=ParquetReader(
-        # chunksize=50_000,
-        columns=REPEATED_COLUMNS + ["dup"],
+            # chunksize=50_000,
+            columns=REPEATED_COLUMNS
+            + ["dup"],
         ),
         ra_column="ra",
         dec_column="dec",
@@ -61,6 +75,7 @@ def import_objects(client):
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_apr18/",
     )
     runner.run_with_client(args, client=client)
+
 
 def import_sources(client):
     args = ImportArguments(
@@ -82,8 +97,10 @@ def import_sources(client):
     )
     runner.run_with_client(args, client=client)
 
+
 import hipscat_import.association.run_association as a_runner
 from hipscat_import.association.arguments import AssociationArguments
+
 
 def create_association():
     args = AssociationArguments(
@@ -101,21 +118,23 @@ def create_association():
     )
     a_runner.run_with_client(args)
 
+
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
+
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'delucchi@gmail.com'
-    msg['To'] = 'delucchi@andrew.cmu.edu'
+    msg["Subject"] = f"epyc execution complete. eom."
+    msg["From"] = "delucchi@gmail.com"
+    msg["To"] = "delucchi@andrew.cmu.edu"
 
     # Send the message via our own SMTP server.
-    s = smtplib.SMTP('localhost')
+    s = smtplib.SMTP("localhost")
     s.send_message(msg)
     s.quit()
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=42,

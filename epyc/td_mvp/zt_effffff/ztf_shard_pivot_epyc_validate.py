@@ -1,4 +1,3 @@
-
 import glob
 import os
 from tqdm import tqdm
@@ -8,9 +7,13 @@ import numpy as np
 
 def check():
     # in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards/**parquet")
-    in_file_paths = ["/data3/epyc/data3/hipscat/raw/ztf_shards/part-00499-shard-11.parquet"]
+    in_file_paths = [
+        "/data3/epyc/data3/hipscat/raw/ztf_shards/part-00499-shard-11.parquet"
+    ]
 
-    out_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet")
+    out_file_paths = glob.glob(
+        "/data3/epyc/data3/hipscat/raw/ztf_shards_pivot/**parquet"
+    )
     out_file_names = [os.path.basename(file_name) for file_name in out_file_paths]
     out_file_names = set(out_file_names)
 
@@ -36,7 +39,7 @@ def check():
                 read_rows += 50_000
             else:
                 small = 1
-                while small <=5 and read_rows < num_rows:
+                while small <= 5 and read_rows < num_rows:
                     sub_file_name = f"{file_minus}-sub-{index}-small-{small}.parquet"
                     small += 1
                     read_rows += 10_000
@@ -53,6 +56,6 @@ def check():
     print("exists:", "============", exists, "============")
     print("missing:", "============", missing, "============")
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     check()

@@ -15,7 +15,6 @@ from hipscat_import.catalog.file_readers import FitsReader
 
 
 def do_import():
-
     filename = "/data3/epyc/data3/hipscat/raw/dr16q/dr16q_prop_Oct23_2022.fits.gz"
     multidimensional = [
         "CONTI_FIT",

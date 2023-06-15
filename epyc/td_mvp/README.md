@@ -1,4 +1,4 @@
-# Timedoman MVP
+# Timedomain MVP
 
 See doc
 
@@ -88,3 +88,13 @@ fieldid
 
 this seems to work. and i'm not sure what the best long-term strategy is here. i want to look
 more into the duplicated indexes and see if it's really a problem.
+
+**after some digging**
+
+they're using the panstarrs id (`objectid` column) as the index.
+
+- this makes it non-unique
+- they're already storing this value in the `objectid` column, and parquet isn't compressing
+the duplication away
+- this makes me sad. but i think that just ignoring it for this use case and importing all 
+the OTHER fields is ok.

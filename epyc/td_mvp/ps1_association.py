@@ -1,6 +1,7 @@
 import hipscat_import.association.run_association as a_runner
 from hipscat_import.association.arguments import AssociationArguments
 
+
 def create_association():
     args = AssociationArguments(
         primary_input_catalog_path="/data3/epyc/data3/hipscat/catalogs/ps1/ps1_otmo",

@@ -1,4 +1,3 @@
-
 import pandas as pd
 
 import hipscat_import.catalog.run_import as runner
@@ -10,8 +9,8 @@ from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import CsvReader
 from dask.distributed import Client
 
-def import_objects(client):
 
+def import_objects(client):
     use_columns = [
         "objID",
         "surveyID",
@@ -48,7 +47,9 @@ def import_objects(client):
     type_map = dict(zip(type_frame["name"], type_frame["type"]))
     type_names = type_frame["name"].values.tolist()
 
-    in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/pan_starrs/otmo/OTMO_**.csv")
+    in_file_paths = glob.glob(
+        "/data3/epyc/data3/hipscat/raw/pan_starrs/otmo/OTMO_**.csv"
+    )
     in_file_paths.sort()
     print(in_file_paths)
     args = ImportArguments(
@@ -57,12 +58,12 @@ def import_objects(client):
         input_format="csv",
         file_reader=CsvReader(
             header=None,
-            index_col=False, 
+            index_col=False,
             column_names=type_names,
             # names=type_names,
             type_map=type_map,
             chunksize=250_000,
-            usecols=use_columns
+            usecols=use_columns,
         ),
         ra_column="raMean",
         dec_column="decMean",
@@ -78,21 +79,23 @@ def import_objects(client):
     )
     runner.run_with_client(args, client=client)
 
+
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
+
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'delucchi@gmail.com'
-    msg['To'] = 'delucchi@andrew.cmu.edu'
+    msg["Subject"] = f"epyc execution complete. eom."
+    msg["From"] = "delucchi@gmail.com"
+    msg["To"] = "delucchi@andrew.cmu.edu"
 
     # Send the message via our own SMTP server.
-    s = smtplib.SMTP('localhost')
+    s = smtplib.SMTP("localhost")
     s.send_message(msg)
     s.quit()
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=10,

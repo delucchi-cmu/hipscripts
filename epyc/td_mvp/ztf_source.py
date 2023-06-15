@@ -33,8 +33,10 @@ def import_sources(client):
     )
     runner.run_with_client(args, client=client)
 
+
 import hipscat_import.association.run_association as a_runner
 from hipscat_import.association.arguments import AssociationArguments
+
 
 def create_association():
     args = AssociationArguments(
@@ -52,21 +54,23 @@ def create_association():
     )
     a_runner.run_with_client(args)
 
+
 def send_completion_email():
     import smtplib
     from email.message import EmailMessage
+
     msg = EmailMessage()
-    msg['Subject'] = f'epyc execution complete. eom.'
-    msg['From'] = 'delucchi@gmail.com'
-    msg['To'] = 'delucchi@andrew.cmu.edu'
+    msg["Subject"] = f"epyc execution complete. eom."
+    msg["From"] = "delucchi@gmail.com"
+    msg["To"] = "delucchi@andrew.cmu.edu"
 
     # Send the message via our own SMTP server.
-    s = smtplib.SMTP('localhost')
+    s = smtplib.SMTP("localhost")
     s.send_message(msg)
     s.quit()
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=30,

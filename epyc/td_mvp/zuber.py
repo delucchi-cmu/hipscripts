@@ -1,4 +1,3 @@
-
 import hipscat_import.pipeline as runner
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import ParquetReader, InputReader
@@ -7,21 +6,23 @@ import pyarrow.parquet as pq
 import pyarrow as pa
 import re
 
+
 class BandParquetReader(ParquetReader):
     def read(self, input_file):
-        columns = ["mjd",
-"mag",
-"objdec",
-"objra",
-"magerr",
-"objectid",
-"info",
-"flag",
-"rcidin",
-"fieldid"]
+        columns = [
+            "mjd",
+            "mag",
+            "objdec",
+            "objra",
+            "magerr",
+            "objectid",
+            "info",
+            "flag",
+            "rcidin",
+            "fieldid",
+        ]
 
-
-        match = re.match(r'.*ztf_[\d]+_[\d]+_([gir]).parquet', str(input_file))
+        match = re.match(r".*ztf_[\d]+_[\d]+_([gir]).parquet", str(input_file))
         band = match.group(1)
         parquet_file = pq.read_table(input_file, columns=columns, **self.kwargs)
         for smaller_table in parquet_file.to_batches(max_chunksize=self.chunksize):
@@ -29,12 +30,15 @@ class BandParquetReader(ParquetReader):
             frame["band"] = band
             yield frame
 
+
 def import_sources(client):
     args = ImportArguments(
         # output_catalog_name="zubercal_3215",
         # input_path="/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F3215/",
         output_catalog_name="ztf_3215_0975_i",
-        input_file_list=["/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F3215/ztf_3215_0975_i.parquet"],
+        input_file_list=[
+            "/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F3215/ztf_3215_0975_i.parquet"
+        ],
         ## NB - you need the parens here!
         file_reader=BandParquetReader(),
         input_format="parquet",
@@ -53,8 +57,8 @@ def import_sources(client):
     )
     runner.pipeline_with_client(args, client)
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=10,
