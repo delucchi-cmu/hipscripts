@@ -43,9 +43,9 @@ and this has all been a huge pain in my butt.
 
 ### detection
 
-real    5351m9.433s
-user    34341m30.827s
-sys     6731m22.640s
+    real    5351m9.433s
+    user    34341m30.827s
+    sys     6731m22.640s
 
 ## SDSS
 
@@ -75,16 +75,16 @@ With a ValueError - cannot reindex on an axis with duplicate labels
 The quickest way I could think to work around this is to ignore the pandas index column when
 we read in the parquet files. so just use the 10 columns we DO want.
 
-mjd
-mag
-objdec
-objra
-magerr
-objectid
-info
-flag
-rcidin
-fieldid
+    mjd
+    mag
+    objdec
+    objra
+    magerr
+    objectid
+    info
+    flag
+    rcidin
+    fieldid
 
 this seems to work. and i'm not sure what the best long-term strategy is here. i want to look
 more into the duplicated indexes and see if it's really a problem.
@@ -98,3 +98,12 @@ they're using the panstarrs id (`objectid` column) as the index.
 the duplication away
 - this makes me sad. but i think that just ignoring it for this use case and importing all 
 the OTHER fields is ok.
+
+### some parquet problems
+
+`/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/ztf_0065_1990_g.parquet`
+
+    Exception: 'OSError("Couldn't deserialize thrift: don't know what type: 
+    Deserializing page header failed.")'
+
+waiting for more.
