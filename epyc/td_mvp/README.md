@@ -135,3 +135,7 @@ Trying instead with a spill dir like:
     UserWarning: Configuration key "shuffle" has been deprecated. Please use "dataframe.shuffle.algorithm" instead
 
 This is not coming from user code anywhere. Must be within dask.
+
+**also fails**
+
+It failed after 61 minutes. no mapping stages completed.
