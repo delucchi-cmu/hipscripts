@@ -107,3 +107,31 @@ the OTHER fields is ok.
     Deserializing page header failed.")'
 
 waiting for more.
+
+there are > 500_000 parquet files. this makes the dask / futures model break. hard. it
+just can't schedule and keep up with the number of tasks needed. the whole pipeline
+failed with a CancelledError after 89 minutes, and no mapping stages completed.
+
+options:
+
+- try on ray (the cop-out, that i'm trying anyway).
+- try chunking the input file list, and only hand off ~1000 files at once.
+- try chunking the input file list, and send a whole chunk to a task.
+
+### some ray problems
+
+**temp file length**
+
+OSError: AF_UNIX path length cannot exceed 107 bytes
+
+    /data3/epyc/projects3/mmd11_hipscat/ray_spill/session_2023-06-16_09-22-19_341436_129856/sockets/plasma_store
+
+Trying instead with a spill dir like:
+
+    /data3/epyc/projects3/mmd11/rayplasma_store
+
+**warnings**
+
+    UserWarning: Configuration key "shuffle" has been deprecated. Please use "dataframe.shuffle.algorithm" instead
+
+This is not coming from user code anywhere. Must be within dask.

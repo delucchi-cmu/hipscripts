@@ -65,6 +65,19 @@ def import_sources():
         tmp_dir="/data3/epyc/data3/hipscat/tmp/zubercal/",
     )
 
+
+    import ray
+    from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
+
+    context = ray.init(
+        num_cpus=30,
+        _temp_dir="/data3/epyc/projects3/mmd11/ray",
+    )
+
+    enable_dask_on_ray()
+
+    # do any dask stuff and it will run on ray
+
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
         n_workers=30,
