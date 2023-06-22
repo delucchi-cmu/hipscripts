@@ -128,7 +128,7 @@ OSError: AF_UNIX path length cannot exceed 107 bytes
 
 Trying instead with a spill dir like:
 
-    /data3/epyc/projects3/mmd11/rayplasma_store
+    /data3/epyc/projects3/mmd11/ray/
 
 **warnings**
 
