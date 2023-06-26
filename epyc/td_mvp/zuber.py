@@ -63,6 +63,7 @@ def import_sources():
         pixel_threshold=20_000_000,
         output_path="/data3/epyc/data3/hipscat/catalogs/",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/zubercal/",
+        completion_email_address="delucchi@andrew.cmu.edu",
     )
 
     with Client(
