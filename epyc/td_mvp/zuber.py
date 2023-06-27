@@ -63,12 +63,13 @@ def import_sources():
         pixel_threshold=20_000_000,
         output_path="/data3/epyc/data3/hipscat/catalogs/",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/zubercal/",
+        resume=True,
         completion_email_address="delucchi@andrew.cmu.edu",
     )
 
     with Client(
         local_directory="/data3/epyc/data3/hipscat/tmp/",
-        n_workers=30,
+        n_workers=10,
         threads_per_worker=1,
     ) as client:
         runner.pipeline_with_client(args, client)

@@ -139,3 +139,53 @@ This is not coming from user code anywhere. Must be within dask.
 **also fails**
 
 It failed after 61 minutes. no mapping stages completed.
+
+### with planning refactor
+
+1. first attempt:
+
+    Mapping  :   0%|          | 15/521429 [00:18<61:45:51,  2.34it/s]
+
+there weren't really enough workers to have started this job with 30 workers, and 
+the worker creation **struggled**.
+
+2. second attempt:
+
+    Mapping  :   0%|          | 0/521414 [00:00<?, ?it/s]
+
+worker creation / execution / waiting again **struggled**. And it takes three+
+keyboard interrupts to actually interrupt this S*&^.
+
+but this is also in a totally new conda environment. i'm going to check that the
+pipeline can run on a smaller batch first...
+
+3. third attempt:
+
+recreated the conda environment with python 3.10.
+
+took a few minutes, but we're here:
+
+    Mapping  :   0%|          | 0/521414 [00:00<?, ?it/s]
+    Mapping  :   0%|          | 1/521414 [00:58<8543:16:45, 58.99s/it]
+
+aaaannnnnddd i've been waiting like 10 minutes for another iteration to finish.
+the reduce stages don't have this kind of problem, and looking at the timeouts, 
+they're happening in a result callback. going to try refactoring the callback
+out. wish me luck.
+
+4. fourth attempt
+
+callback refactor.
+
+    Mapping  :   0%|          | 0/521429 [00:00<?, ?it/s]
+    Mapping  :   0%|          | 3/521429 [01:27<4212:30:05, 29.08s/it]
+    Mapping  :   0%|          | 16/521429 [01:27<586:57:44,  4.05s/it]
+    Mapping  :   0%|          | 16/521429 [01:42<586:57:44,  4.05s/it]
+
+aaaaaaaaand hung. it's still taking a long time. could be that there's still a
+return value from the map call?
+
+also. just let me kill this stupid job, dask. let me kill it.
+
+5. fifth attempt
+
