@@ -189,3 +189,37 @@ also. just let me kill this stupid job, dask. let me kill it.
 
 5. fifth attempt
 
+    Mapping  :   0%|          | 0/521413 [00:00<?, ?it/s]
+
+but we've been here before. i need to just walk away for an hour.
+
+6. clear out the temp directory?
+
+    Mapping  :   0%|          | 0/521429 [00:00<?, ?it/s]
+    Mapping  :   0%|          | 260/521429 [01:21<2:13:30, 65.06it/s]
+    Mapping  :   0%|          | 260/521429 [01:36<2:13:30, 65.06it/s]
+
+well this is going better. but i don't love that it gave me two entries for 
+260, and then froze after that.
+
+showing two entries would normally mean that the tqdm state is now closed.
+which unfortunately might be true?
+
+16 hours later, and nothing.
+
+7. go by directory. not the full on file path generator thing i'd written up,
+but way simpler, and just requires REMOVING code. i'm a fan =]
+
+    Mapping  :   0%|          | 0/721 [00:00<?, ?it/s]
+    Mapping  :   6%|▋         | 46/721 [50:58<5:38:17, 30.07s/it]2023-06-28 13:20:37,272 - distributed.worker - WARNING - Compute Failed
+Key:       map_13
+Function:  map_to_pixels
+args:      ()
+kwargs:    {'input_file': '/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/', 'cache_path': '/data3/epyc/data3/hipscat/tmp/zubercal/zubercal/intermediate', 'file_reader': <__main__.ZubercalParquetReader object at 0x7f9a4c612d40>, 'mapping_key': 'map_13', 'highest_order': 10, 'ra_column': 'objra', 'dec_column': 'objdec'}
+Exception: 'OSError("Couldn\'t deserialize thrift: don\'t know what type: \\x0f\\nDeserializing page header failed.\\n")'
+
+    Mapping  : 100%|██████████| 721/721 [14:32:57<00:00, 72.65s/it] 
+
+so. pretty good. one of the files failed, and i need to dig into that, but
+otherwise, only takes around 15 hours to read through all the files to 
+get the histogram.
