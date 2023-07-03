@@ -38,6 +38,8 @@ class ZubercalParquetReader(ParquetReader):
         files = glob.glob(f"{input_file}/**.parquet")
         files.sort()
         for file in files:
+            if file == "/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/ztf_0065_1990_g.parquet":
+                continue
             match = re.match(r".*ztf_[\d]+_[\d]+_([gir]).parquet", str(file))
             band = match.group(1)
             parquet_file = pq.read_table(file, columns=columns, **self.kwargs)
@@ -68,7 +70,7 @@ def import_sources():
         pixel_threshold=20_000_000,
         output_path="/data3/epyc/data3/hipscat/catalogs/",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/zubercal/",
-        # resume=True,
+        resume=True,
         completion_email_address="delucchi@andrew.cmu.edu",
     )
 

@@ -223,3 +223,21 @@ Exception: 'OSError("Couldn\'t deserialize thrift: don\'t know what type: \\x0f\
 so. pretty good. one of the files failed, and i need to dig into that, but
 otherwise, only takes around 15 hours to read through all the files to 
 get the histogram.
+
+    real    873m21.594s
+    user    2872m16.485s
+    sys     1043m44.676s
+
+7.1. found the troublesome file:
+
+    /epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/ztf_0065_1990_g.parquet
+
+the other 742 in that directory did ok.
+
+7.2. resuming.
+
+    Mapping  :   0%|          | 0/1 [00:00<?, ?it/s]
+    Mapping  : 100%|██████████| 1/1 [02:37<00:00, 157.99s/it]
+    Mapping  : 100%|██████████| 1/1 [02:37<00:00, 157.99s/it]
+
+    Binning  :   0%|          | 0/1 [00:00<?, ?it/s]

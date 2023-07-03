@@ -31,5 +31,8 @@ if __name__ == "__main__":
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/",
         completion_email_address="delucchi@andrew.cmu.edu",
+        resume=True,
+        overwrite=True,
+        use_schema_file="/data3/epyc/data3/hipscat/tmp/neowise_schema.parquet",
     )
     runner.pipeline(args)
