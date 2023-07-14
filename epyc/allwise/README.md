@@ -56,3 +56,17 @@ adding in the schema file generated somewhere else. resuming.
     Reducing :   0%|          | 0/10895 [00:00<?, ?it/s]
 
 so about half the files failed to write. they're writing now, though!
+
+Further attempt:
+
+    real    477m36.557s
+    user    3605m41.809s
+    sys     1446m0.624s
+
+And a breakdown:
+
+    Binning  : 100%|██████████| 1/1 [01:15<00:00, 75.16s/it]
+    Reducing : 100%|██████████| 10895/10895 [7:46:07<00:00,  2.57s/it]
+    Finishing: 100%|██████████| 6/6 [08:03<00:00, 80.65s/it]
+
+And it's stinking done now.

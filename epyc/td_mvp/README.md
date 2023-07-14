@@ -238,6 +238,21 @@ the other 742 in that directory did ok.
 
     Mapping  :   0%|          | 0/1 [00:00<?, ?it/s]
     Mapping  : 100%|██████████| 1/1 [02:37<00:00, 157.99s/it]
-    Mapping  : 100%|██████████| 1/1 [02:37<00:00, 157.99s/it]
 
     Binning  :   0%|          | 0/1 [00:00<?, ?it/s]
+    Splitting: 100%|██████████| 721/721 [243:53:48<00:00, 1217.79s/it]
+    Reducing :  69%|██████▉   | 49077/70853 [48:46:28<18:16:56,  3.02s/it]
+    Reducing : 100%|██████████| 70853/70853 [70:41:20<00:00,  3.59s/it]
+
+    Finishing:   0%|          | 0/6 [00:00<?, ?it/s]
+    Finishing: 100%|██████████| 6/6 [19:52<00:00, 198.80s/it]
+
+with timing:
+
+    real    18908m8.470s
+    user    55157m1.188s
+    sys     13705m41.481s
+    
+Y'all. Y'ALL. 
+
+So ready to just walk away from this. Maybe I'll go get some ice cream.
