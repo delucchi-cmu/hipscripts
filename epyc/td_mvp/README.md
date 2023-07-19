@@ -47,9 +47,6 @@ and this has all been a huge pain in my butt.
     user    34341m30.827s
     sys     6731m22.640s
 
-## SDSS
-
-
 ## zubercal
 
 ### bands
@@ -256,3 +253,50 @@ with timing:
 Y'all. Y'ALL. 
 
 So ready to just walk away from this. Maybe I'll go get some ice cream.
+
+## SDSS
+
+Using data from https://data.sdss.org/sas/dr12/boss/sweeps/dr9/301/
+
+See also https://live-sdss4org-dr16.pantheonsite.io/imaging/catalogs/#sweeps
+
+Multidimensional FITS files. harumph.
+
+raw file size
+
+    $ du -> 425G
+
+1. Remove all the multidimensional fields on import. 
+
+This is a terrible option, as all the useful information is in those
+multidimensional fields.
+
+    real    52m52.021s
+    user    458m22.770s
+    sys     84m49.995s
+
+    $ du  -> 30G
+
+2. Convert all the fits files to parquet, with FIELD_r, FIELD_i, etc expansion
+
+Time to convert all files: 4:45:40
+
+Time to import:
+
+    real    37m27.010s
+    user    293m57.470s
+    sys     91m48.088s
+
+    Mapping  : 100%|██████████| 4584/4584 [03:18<00:00, 23.04it/s]
+    Binning  : 100%|██████████| 2/2 [00:09<00:00,  4.67s/it]
+    Splitting: 100%|██████████| 4584/4584 [17:16<00:00,  4.42it/s]
+    Reducing : 100%|██████████| 263/263 [15:36<00:00,  3.56s/it]
+    Finishing: 100%|██████████| 6/6 [00:01<00:00,  3.35it/s]
+
+    $ du -> 209G
+
+3. Convert to nested array parquet files?
+
+Yikes. That's 7 minutes per file to convert. That would take over a week.
+
+These byte-swapped arrays are killing me.

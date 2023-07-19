@@ -23,11 +23,13 @@ if __name__ == "__main__":
         pixel_threshold=1_000_000,
         tmp_dir="/data3/epyc/data3/hipscat/tmp/",
         overwrite=True,
+        resume=True,
         highest_healpix_order=10,
         dask_n_workers=1,
         dask_threads_per_worker=1,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         output_path="/data3/epyc/data3/hipscat/catalogs/",
         completion_email_address="delucchi@andrew.cmu.edu",
+        use_schema_file="/data3/epyc/data3/hipscat/tmp/tic_schema.parquet",
     )
     runner.pipeline(args)

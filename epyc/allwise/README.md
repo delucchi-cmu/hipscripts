@@ -70,3 +70,19 @@ And a breakdown:
     Finishing: 100%|██████████| 6/6 [08:03<00:00, 80.65s/it]
 
 And it's stinking done now.
+
+## Importing TIC
+
+Beans. I forgot to send stdout to a file.
+
+
+    Reducing : 100%|����������������������������������������������������������������������������������������������������������������������������������������| 
+    3768/3768 [22:42<00:00,  2.77it/s]
+    2
+    RuntimeError: Some reducing stages failed. See logs for details.
+
+    real    2005m27.464s
+    user    1921m15.660s
+    sys     283m43.416s
+
+These are all failing because I need a schema file.
