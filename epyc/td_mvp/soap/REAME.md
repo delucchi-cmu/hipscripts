@@ -33,3 +33,42 @@ I dunno. We'll see how things go with other catalogs.
 
 With no unmatched sources file written (because duh everything definitely
 matches).
+
+## AXS ZTF source to PanStarrs
+
+    Planning: 100%|██████████| 1/1 [03:40<00:00, 220.75s/it]
+    Counting : 100%|██████████| 311037/311037 [4:50:25<00:00, 17.85it/s]
+    Finishing: 100%|██████████| 4/4 [14:41<00:00, 220.45s/it]
+
+    real    329m26.276s
+    user    4058m6.049s
+    sys     2094m6.291s
+
+Oh wow. .01% unmatched (71985277/570737814736). That's pretty good.
+And only 571 source partitions contain unmatched sources.
+
+## Zubercal to PanStarrs
+
+Ok. Last one for a little while.
+
+    Planning: 100%|██████████| 1/1 [00:56<00:00, 56.84s/it]
+    Counting : 100%|██████████| 70853/70853 [6:16:20<00:00,  3.14it/s]
+    Finishing: 100%|██████████| 4/4 [03:47<00:00, 57.00s/it]
+
+    real    386m4.066s
+    user    4317m26.892s
+    sys     3783m58.487s
+
+.06% unmatched. I'm pretty happy with this.
+
+Still curious what this might look like with extra look-arounds for some
+pixels, but I'm pretty sure this is good enough for the timedomain MVP.
+
+- PanStarrs object to detection [/data3/epyc/data3/hipscat/catalogs/ps1/ps1_otmo_to_detection]
+- AXS ZTF source to AXS ZTF object [/data3/epyc/data3/hipscat/catalogs/ztf_axs/ztf_object_to_source]
+- AXS ZTF source to PanStarrs [/data3/epyc/data3/hipscat/catalogs/ztf_axs/ps1_to_source]
+- Zubercal to PanStarrs [/data3/epyc/data3/hipscat/catalogs/ps1/ps1_to_zubercal]
+
+## AGN to SDSS.
+
+Ok. That's going to take longer.
