@@ -300,3 +300,49 @@ Time to import:
 Yikes. That's 7 minutes per file to convert. That would take over a week.
 
 These byte-swapped arrays are killing me.
+
+### Ray notes
+
+I switched the client to use a ray context and do dask on ray things.
+
+Then started up the pipeline for SDSS and killed it in the middle.
+
+    Planning : 100%|██████████| 5/5 [00:00<00:00, 25.21it/s]
+    Mapping  : 100%|██████████| 4584/4584 [03:42<00:00, 20.61it/s]
+    Binning  : 100%|██████████| 2/2 [00:10<00:00,  5.29s/it]
+    Splitting:  68%|██████▊   | 3129/4584 [14:48<06:52,  3.52it/s]
+
+    real    20m37.002s
+    user    140m47.814s
+    sys     44m22.049s
+
+Then tried resuming.
+
+    Planning : 100%|██████████| 5/5 [00:00<00:00, 143.99it/s]
+    Binning  : 100%|██████████| 2/2 [00:02<00:00,  1.29s/it]
+    Splitting:   0%|          | 0/1455 [00:00<?, ?it/s]
+
+And it skipped the map phase, and went right to where it left off splitting 
+input files.
+
+Speed doesn't look any faster (and might be slower?), but this is importing 
+parquet files and not CSV and that makes a difference in speed/memory 
+consumption, where this was already pretty performant.
+
+    Splitting: 100%|██████████| 1455/1455 [14:59<00:00,  1.62it/s]
+    Reducing :   0%|          | 0/1032 [00:00<?, ?it/s]
+    Reducing : 100%|██████████| 1032/1032 [15:43<00:00,  1.09it/s]
+    Finishing: 100%|██████████| 6/6 [00:07<00:00,  1.25s/it]
+
+    real    31m18.902s
+    user    217m55.484s
+    sys     63m5.985s
+
+This is a different number of shards to reduce, though. I'll dig into that
+once the full import has had a chance to finish.
+
+**dug into**
+
+Dunno why the first one said it was only reducing 263. I might have been
+resuming and didn't remember. Looking at the partitions, they've both
+have 1032 rows each. So I'm calling this done.
