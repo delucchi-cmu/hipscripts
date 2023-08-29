@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH -n 4
+#SBATCH -p RM-shared
+#SBATCH -t 3:00:00
+
+#echo commands to stdout
+set -x
+
+# move to working directory
+# this job assumes:
+# - all input data is stored in this directory
+# - all output should be stored in this directory
+# - please note that groupname should be replaced by your groupname
+# - username should be replaced by your username
+# - path-to-directory should be replaced by the path to your directory where the executable is
+date
+
+cd /ocean/projects/phy210048p/shared/hipscat
+
+module load anaconda3
+
+conda activate hipscatenv
+
+date
+
+time python /jet/home/delucchi/git/hipscripts/psc/day1/sdss_convert.py
+
+date

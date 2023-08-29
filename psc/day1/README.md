@@ -75,6 +75,19 @@ $ screen -x sdss
 
 After 1 hour, `du -chs` ==> 40G. So probably 12 hours? Check again in the morning?
 
+Oh Beans. Maybe I should have used `data.bridges2.psc.edu`
+
+Hmm. It's only 170G. When it was on epyc, it was 425G. That's not great?
+
+And I did it in a screen, and didn't pipe my output anywhere, so I can't look at the logs
+to see if any of the file transfers failed.
+
+WELL. I can try that data node and do something like:
+
+`$ source wget_sdss &> /jet/home/delucchi/git/hipscripts/psc/day1/wget_sdss.log`
+
+Oh. Fuck me. I think data.sdss.org is down right now? Ok! 
+
 ## Misc
 
 We don't have GPU grants, so can't do anything KBMOD-like there (without getting more resources).
