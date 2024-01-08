@@ -8,7 +8,7 @@ def create_association():
         object_id_column="objID",
         source_catalog_dir="/data3/epyc/data3/hipscat/catalogs/ps1/ps1_detection",
         source_object_id_column="objID",
-        output_path="/data3/epyc/data3/hipscat/catalogs/ps1/",
+        output_path="/data3/epyc/data3/hipscat/test_catalogs/soap/",
         output_catalog_name="ps1_otmo_to_detection",
         tmp_dir="/data3/epyc/data3/hipscat/tmp/ps1/",
         dask_tmp="/data3/epyc/data3/hipscat/tmp/ps1/",
