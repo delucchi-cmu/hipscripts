@@ -46,3 +46,34 @@ So I think
 1. trying even smaller increment for divisions (limited success)
 2. trying to massage the data differently so we're not storing that giant `designation`
     twice for each frame (was both the index and a field value). (we'll see.)
+
+Well, it finally ran. Mostly by just not attempting to de-duplicate.
+
+    real    22m6.364s
+    user    164m8.704s
+    sys     83m26.574s
+
+That's pretty good timing! And the output is ~15G, which is pretty reasonable.
+The individual files are freaking tiny, though. Some are < 1M. Most are 3-4 M.
+Maybe I'll try upping the compute partition size?
+
+The thing that's most annoying now is that the progress bar doesn't show up AT ALL.
+
+    real    20m58.673s
+    user    154m37.138s
+    sys     71m47.616s
+
+Hm. Still 7500 partitions, that are the same sizes. So the partition size
+maybe doesn't do anything? Or there's some secret max?
+
+LOLOL. The secret max is the divisions I set in the `divisions` hint parameter.
+Ya know. The thing Sandro warned about in his code review. Let's change that.
+
+Boom. Roasted. Yeah. Down to 45 files. And it's 14G instead of 15G =D
+
+Now let's use that in a fast selection use case and see what happens!
+
+It's about 40 seconds to do the `loc_partitions`, but once you get that, 
+it's like 10s for the index search bits.
+
+So I think putting some effort into speeding that up would be a good idea!

@@ -11,10 +11,10 @@ def create_index():
     args = IndexArguments(
         input_catalog_path="/data3/epyc/data3/hipscat/test_catalogs/gaia_symbolic",
         indexing_column="designation",
-        output_path="/data3/epyc/data3/hipscat/test_catalogs",
-        output_artifact_name="gaia_designation",
+        output_path="/data3/epyc/data3/hipscat/catalogs",
+        output_artifact_name="gaia_designation_index",
         include_hipscat_index=False,
-        compute_partition_size=20_000_000_000,
+        compute_partition_size=2_000_000_000,
         divisions=divisions,
         drop_duplicates=False,
         dask_n_workers=10,
