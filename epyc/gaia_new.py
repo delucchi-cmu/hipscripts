@@ -14,7 +14,7 @@ if __name__ == "__main__":
     args.from_params(
         catalog_name="gaia_real",
         input_path="/epyc/data/gaia_edr3_csv/",
-        # debug_input_files=["/epyc/data/gaia_edr3_csv/GaiaSource_786097-786431.csv.gz"],
+        input_file_list=["/epyc/data/gaia_edr3_csv/GaiaSource_786097-786431.csv.gz"],
         input_format="csv.gz",
         ra_column="ra",
         dec_column="dec",
