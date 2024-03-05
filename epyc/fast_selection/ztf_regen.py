@@ -45,7 +45,7 @@ class DirectoryParquetReader(ParquetReader):
         files.sort()
 
         for file in files:
-            yield pd.read_parquet(file, columns=keep_columns)
+            yield pd.read_parquet(file, columns=keep_columns).reset_index(drop=True)
 
 def do_import():
 
@@ -56,9 +56,9 @@ def do_import():
     paths = [os.path.join(catalog_dir, f"Norder={group_index[0]}", f"Dir={group_index[1]}") for group_index, _ in groups]
 
     args = ImportArguments(
-        output_path="/data3/epyc/data3/hipscat/test_catalogs/ztf_axs/",
+        output_path="/data3/epyc/data3/hipscat/catalogs/ztf_axs/",
         output_artifact_name="ztf_zource",
-        input_file_list=paths[0:3],
+        input_file_list=paths,
         input_format="parquet",
         file_reader=DirectoryParquetReader(),
         ra_column="ra",
@@ -71,6 +71,8 @@ def do_import():
         dask_threads_per_worker=1,
         dask_tmp="/data3/epyc/data3/hipscat/tmp/",
         completion_email_address="delucchi@andrew.cmu.edu",
+        overwrite=True,
+        resume=True,
     )
     runner.pipeline(args)
 
