@@ -6,6 +6,9 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            package-name: ['hipscat', 'hipscat-import', 'lsdb']
 
         steps:
         - uses: actions/checkout@v3
@@ -21,9 +24,9 @@ jobs:
             python -m pip install --upgrade pip
             pip install get_pypi_latest_version            
         - name: Get conda version
-          run: echo "conda_version=$(conda search -c conda-forge lsdb | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+          run: echo "conda_version=$(conda search -c conda-forge ${{matrix.package-name}} | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
         - name: Get pip version
-          run: echo "pypi_version=$(get_pypi_latest_version lsdb)" >> $GITHUB_ENV
+          run: echo "pypi_version=$(get_pypi_latest_version ${{matrix.package-name}})" >> $GITHUB_ENV
         - name: Echo Versions
           run: | 
             echo conda version=$conda_version
