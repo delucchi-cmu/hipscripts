@@ -32,5 +32,5 @@ jobs:
         
         - name: Fail if versions do not match
           if: ${{ env.conda_version != env.pypi_version }}
-            run: exit 1
+          run: exit 1
             
