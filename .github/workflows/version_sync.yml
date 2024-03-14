@@ -20,14 +20,14 @@ jobs:
             python -m pip install --upgrade pip
             pip install get_pypi_latest_version            
         - name: hipscat version check
-          uses: ./.github/actions
+          uses: ./.github/actions/check_versions
           with: 
             package-name: hipscat
         - name: hipscat-import version check
-          uses: ./.github/actions
+          uses: ./.github/actions/check_versions
           with: 
             package-name: hipscat-import
         - name: lsdb version check
-          uses: ./.github/actions
+          uses: ./.github/actions/check_versions
           with: 
             package-name: lsdb
