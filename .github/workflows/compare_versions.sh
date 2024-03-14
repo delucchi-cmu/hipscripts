@@ -9,3 +9,4 @@ echo "pypi version=$pypi_version"
 if ["$conda_version" != "$pypi_version"]
 then 
     exit 1
+fi
