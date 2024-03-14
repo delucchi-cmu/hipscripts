@@ -1,18 +1,27 @@
+name: 'Compare latest pypi/pip and conda version numbers'
 inputs:
   package-name:
     description: 'Name of package'
     required: true
+    default: ''
 runs:
   using: "composite"
   steps:
     - name: Get conda version
-      run: echo "conda_version=$(conda search -c conda-forge ${{package-name}} | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+      run: echo "conda_version=$(conda search -c conda-forge $INPUT_PACKAGE_NAME | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+      shell: bash
+      env:
+        INPUT_PACKAGE_NAME: ${{ inputs.package-name }}
     - name: Get pip version
       run: echo "pypi_version=$(get_pypi_latest_version ${{package-name}})" >> $GITHUB_ENV
+      shell: bash
+      env:
+        INPUT_PACKAGE_NAME: ${{ inputs.package-name }}
     - name: Echo Versions
       run: | 
         echo conda version=$conda_version
         echo pypi version=$pypi_version
+      shell: bash
     
     - name: Fail if versions do not match
       if: ${{ env.conda_version != env.pypi_version }}
