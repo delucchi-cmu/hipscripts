@@ -10,13 +10,13 @@ do
     pypi_version=$(get_pypi_latest_version $package_name)
     echo "  * pypi version=$pypi_version"
 
-    if [$conda_version != $pypi_version]
+    if [ "$conda_version" != "$pypi_version" ]
     then 
         some_failure=true
     fi
 done
 
-if [$some_failure == true]
+if [ "$some_failure" == true ]
 then
     exit 1
 fi
