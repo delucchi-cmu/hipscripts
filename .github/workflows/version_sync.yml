@@ -20,7 +20,7 @@ jobs:
             python -m pip install --upgrade pip
             pip install get_pypi_latest_version            
         - name: hipscat version check
-          run: bash compare_versions.sh hipscat
+          run: bash ${GITHUB_WORKSPACE}/.github/workflows/compare_versions.sh hipscat
         - name: hipscat-import version check
           uses: ./.github/actions/check_versions
           with: 
