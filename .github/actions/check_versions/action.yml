@@ -8,21 +8,7 @@ runs:
   using: "composite"
   steps:
     - name: Get conda version
-      run: echo "conda_version=$(conda search -c conda-forge $INPUT_PACKAGE_NAME | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+      run: compare_versions.sh
       shell: bash
-      env:
-        INPUT_PACKAGE_NAME: ${{ inputs.package-name }}
-    - name: Get pip version
-      run: echo "pypi_version=$(get_pypi_latest_version $INPUT_PACKAGE_NAME)" >> $GITHUB_ENV
-      shell: bash
-      env:
-        INPUT_PACKAGE_NAME: ${{ inputs.package-name }}
-    - name: Echo Versions
-      run: | 
-        echo conda version=$conda_version
-        echo pypi version=$pypi_version
-      shell: bash
-    
-    - name: Fail if versions do not match
-      if: ${{ env.conda_version != env.pypi_version }}
-      run: exit 1
+      with:
+        package_name: ${{ inputs.package-name }}
