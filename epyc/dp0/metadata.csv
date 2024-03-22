@@ -1,0 +1,992 @@
+Column Name,Data Type,Unit,UCD,Description
+objectId,long,,meta.id;src;meta.main,Unique id. Unique ObjectID
+coord_dec,double,deg,pos.eq.dec;meta.main,Fiducial ICRS Declination of centroid used for database indexing
+coord_ra,double,deg,pos.eq.ra;meta.main,Fiducial ICRS Right Ascension of centroid used for database indexing
+deblend_nChild,int,,,Number of children this object has (defaults to 0)
+deblend_skipped,boolean,,,Deblender skipped this source
+detect_fromBlend,boolean,,,This source is deblended from a parent with more than one child.
+detect_isDeblendedModelSource,boolean,,,True if source has no children and is in the inner region of a coadd patch and is in the inner region of a coadd tract and is not detected in a pseudo-filter (see config.pseudoFilterList) and is a deblended child
+detect_isDeblendedSource,boolean,,,True if source has no children and is in the inner region of a coadd patch and is in the inner region of a coadd tract and is not detected in a pseudo-filter (see config.pseudoFilterList) and is either an unblended isolated source or a deblended child from a parent with
+detect_isIsolated,boolean,,,This source is not a part of a blend.
+detect_isPatchInner,boolean,,,True if source is in the inner region of a coadd patch
+detect_isPrimary,boolean,,,True if source has no children and is in the inner region of a coadd patch and is in the inner region of a coadd tract and is not detected in a pseudo-filter (see config.pseudoFilterList)
+detect_isTractInner,boolean,,,True if source is in the inner region of a coadd tract
+footprintArea,int,pixel,,Number of pixels in the sources detection footprint. Reference band.
+merge_peak_sky,boolean,,,Peak detected in filter sky
+parentObjectId,long,,meta.id.parent,Unique ID of parent source. Reference band.
+patch,long,,meta.id.part;obs.field,Skymap patch ID
+refBand,char,,meta.id;instr.filter;meta.main,Reference band - parameters measured on coadds of this band were used for multi-band forced photometry
+refExtendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Reference band."
+refFwhm,double,,,Estimated FWHM on the reference band at source center assuming a Gaussian profile
+shape_flag,boolean,,,"General failure flag, set if anything went wrong. Reference band."
+shape_xx,double,pixel^2,,HSM moments. Reference band.
+shape_xy,double,pixel^2,,HSM moments. Reference band.
+shape_yy,double,pixel^2,,HSM moments. Reference band.
+sky_object,boolean,,,No source was detected here. This object exists to characterize properties of the sky background
+skymap,char,,,Name of skymap used for coadd projection
+tract,long,,meta.id;obs.field,Skymap tract ID
+x,double,pixel,,Centroid from Sdss Centroid algorithm. Reference band.
+xErr,float,pixel,,1-sigma uncertainty on x position. Reference band.
+xy_flag,boolean,,,General Failure Flag. Reference band.
+y,double,pixel,,Centroid from Sdss Centroid algorithm. Reference band.
+yErr,float,pixel,,1-sigma uncertainty on y position. Reference band.
+g_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on g-band.
+g_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on g-band.
+g_ap03Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on g-band.
+g_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on g-band.
+g_ap06Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on g-band.
+g_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on g-band.
+g_ap09Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on g-band.
+g_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on g-band.
+g_ap12Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on g-band.
+g_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on g-band.
+g_ap17Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on g-band.
+g_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on g-band.
+g_ap25Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on g-band.
+g_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on g-band.
+g_ap35Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on g-band.
+g_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on g-band.
+g_ap50Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on g-band.
+g_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on g-band.
+g_ap70Flux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_apFlux_flag,boolean,,,General Failure Flag. Measured on g-band.
+g_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on g-band.
+g_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on g-band.
+g_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on g-band.
+g_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on g-band.
+g_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on g-band.
+g_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on g-band.
+g_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on g-band.
+g_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on g-band.
+g_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on g-band.
+g_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on g-band.
+g_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on g-band.
+g_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on g-band."
+g_blendedness_flag,boolean,,,General Failure Flag. Measured on g-band.
+g_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on g-band.
+g_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on g-band.
+g_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on g-band."
+g_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on g-band.
+g_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on g-band.
+g_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on g-band.
+g_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on g-band.
+g_calibFlux_flag,boolean,,,General Failure Flag. Measured on g-band.
+g_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on g-band.
+g_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on g-band.
+g_calib_astrometry_used,boolean,,,Propagated from sources. Measured on g-band.
+g_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on g-band.
+g_calib_photometry_used,boolean,,,Propagated from sources. Measured on g-band.
+g_calib_psf_candidate,boolean,,,Propagated from sources. Measured on g-band.
+g_calib_psf_reserved,boolean,,,Propagated from sources. Measured on g-band.
+g_calib_psf_used,boolean,,,Propagated from sources. Measured on g-band.
+g_centroid_flag,boolean,,,General Failure Flag. Measured on g-band.
+g_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on g-band.
+g_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on g-band.
+g_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on g-band.
+g_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on g-band.
+g_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on g-band.
+g_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on g-band."
+g_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on g-band.
+g_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on g-band.
+g_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on g-band.
+g_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on g-band.
+g_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on g-band."
+g_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on g-band.
+g_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on g-band.
+g_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on g-band.
+g_fwhm,double,pixel^2,,HSM moments. Measured on g-band.
+g_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on g-band.
+g_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on g-band.
+g_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on g-band.
+g_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on g-band.
+g_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on g-band.
+g_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on g-band.
+g_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on g-band.
+g_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on g-band."
+g_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on g-band.
+g_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on g-band."
+g_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on g-band."
+g_iRound_flag,double,pixel^2,,HSM moments. Measured on g-band.
+g_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on g-band."
+g_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on g-band."
+g_inputCount_flag,boolean,,,Set for any fatal failure. Forced on g-band.
+g_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on g-band.
+g_ixx,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixxPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixxRound,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixy,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixyPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_ixyRound,double,pixel^2,,HSM moments. Measured on g-band.
+g_iyy,double,pixel^2,,HSM moments. Measured on g-band.
+g_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_iyyPSF,double,pixel^2,,HSM moments. Measured on g-band.
+g_iyyRound,double,pixel^2,,HSM moments. Measured on g-band.
+g_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on g-band.
+g_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on g-band.
+g_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on g-band."
+g_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on g-band.
+g_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on g-band.
+g_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on g-band.
+g_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on g-band.
+g_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on g-band.
+g_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on g-band."
+g_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on g-band.
+g_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on g-band.
+g_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on g-band.
+g_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on g-band.
+g_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on g-band.
+g_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on g-band.
+g_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on g-band.
+g_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on g-band.
+g_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on g-band.
+g_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on g-band.
+g_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on g-band.
+g_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on g-band.
+g_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on g-band.
+g_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on g-band.
+g_pixelFlags_offimage,boolean,,,Source center is off image. Measured on g-band.
+g_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on g-band.
+g_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on g-band.
+g_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on g-band.
+g_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on g-band.
+g_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on g-band.
+g_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on g-band.
+g_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on g-band.
+g_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on g-band.
+g_psfFlux_area,float,pixel,,Effective area of PSF. Forced on g-band.
+g_psfFlux_flag,boolean,,,General Failure Flag. Forced on g-band.
+g_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on g-band.
+g_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on g-band.
+g_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on g-band.
+g_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on g-band.
+i_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on i-band.
+i_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on i-band.
+i_ap03Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on i-band.
+i_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on i-band.
+i_ap06Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on i-band.
+i_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on i-band.
+i_ap09Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on i-band.
+i_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on i-band.
+i_ap12Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on i-band.
+i_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on i-band.
+i_ap17Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on i-band.
+i_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on i-band.
+i_ap25Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on i-band.
+i_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on i-band.
+i_ap35Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on i-band.
+i_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on i-band.
+i_ap50Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on i-band.
+i_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on i-band.
+i_ap70Flux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_apFlux_flag,boolean,,,General Failure Flag. Measured on i-band.
+i_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on i-band.
+i_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on i-band.
+i_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on i-band.
+i_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on i-band.
+i_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on i-band.
+i_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on i-band.
+i_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on i-band.
+i_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on i-band.
+i_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on i-band.
+i_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on i-band.
+i_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on i-band.
+i_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on i-band."
+i_blendedness_flag,boolean,,,General Failure Flag. Measured on i-band.
+i_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on i-band.
+i_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on i-band.
+i_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on i-band."
+i_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on i-band.
+i_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on i-band.
+i_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on i-band.
+i_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on i-band.
+i_calibFlux_flag,boolean,,,General Failure Flag. Measured on i-band.
+i_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on i-band.
+i_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on i-band.
+i_calib_astrometry_used,boolean,,,Propagated from sources. Measured on i-band.
+i_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on i-band.
+i_calib_photometry_used,boolean,,,Propagated from sources. Measured on i-band.
+i_calib_psf_candidate,boolean,,,Propagated from sources. Measured on i-band.
+i_calib_psf_reserved,boolean,,,Propagated from sources. Measured on i-band.
+i_calib_psf_used,boolean,,,Propagated from sources. Measured on i-band.
+i_centroid_flag,boolean,,,General Failure Flag. Measured on i-band.
+i_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on i-band.
+i_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on i-band.
+i_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on i-band.
+i_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on i-band.
+i_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on i-band.
+i_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on i-band."
+i_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on i-band.
+i_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on i-band.
+i_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on i-band.
+i_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on i-band.
+i_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on i-band."
+i_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on i-band.
+i_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on i-band.
+i_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on i-band.
+i_fwhm,double,pixel^2,,HSM moments. Measured on i-band.
+i_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on i-band.
+i_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on i-band.
+i_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on i-band.
+i_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on i-band.
+i_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on i-band.
+i_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on i-band.
+i_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on i-band.
+i_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on i-band."
+i_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on i-band.
+i_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on i-band."
+i_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on i-band."
+i_iRound_flag,double,pixel^2,,HSM moments. Measured on i-band.
+i_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on i-band."
+i_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on i-band."
+i_inputCount_flag,boolean,,,Set for any fatal failure. Forced on i-band.
+i_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on i-band.
+i_ixx,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixxPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixxRound,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixy,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixyPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_ixyRound,double,pixel^2,,HSM moments. Measured on i-band.
+i_iyy,double,pixel^2,,HSM moments. Measured on i-band.
+i_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_iyyPSF,double,pixel^2,,HSM moments. Measured on i-band.
+i_iyyRound,double,pixel^2,,HSM moments. Measured on i-band.
+i_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on i-band.
+i_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on i-band.
+i_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on i-band."
+i_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on i-band.
+i_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on i-band.
+i_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on i-band.
+i_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on i-band.
+i_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on i-band.
+i_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on i-band."
+i_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on i-band.
+i_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on i-band.
+i_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on i-band.
+i_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on i-band.
+i_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on i-band.
+i_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on i-band.
+i_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on i-band.
+i_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on i-band.
+i_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on i-band.
+i_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on i-band.
+i_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on i-band.
+i_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on i-band.
+i_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on i-band.
+i_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on i-band.
+i_pixelFlags_offimage,boolean,,,Source center is off image. Measured on i-band.
+i_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on i-band.
+i_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on i-band.
+i_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on i-band.
+i_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on i-band.
+i_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on i-band.
+i_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on i-band.
+i_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on i-band.
+i_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on i-band.
+i_psfFlux_area,float,pixel,,Effective area of PSF. Forced on i-band.
+i_psfFlux_flag,boolean,,,General Failure Flag. Forced on i-band.
+i_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on i-band.
+i_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on i-band.
+i_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on i-band.
+i_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on i-band.
+r_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on r-band.
+r_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on r-band.
+r_ap03Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on r-band.
+r_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on r-band.
+r_ap06Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on r-band.
+r_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on r-band.
+r_ap09Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on r-band.
+r_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on r-band.
+r_ap12Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on r-band.
+r_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on r-band.
+r_ap17Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on r-band.
+r_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on r-band.
+r_ap25Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on r-band.
+r_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on r-band.
+r_ap35Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on r-band.
+r_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on r-band.
+r_ap50Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on r-band.
+r_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on r-band.
+r_ap70Flux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_apFlux_flag,boolean,,,General Failure Flag. Measured on r-band.
+r_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on r-band.
+r_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on r-band.
+r_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on r-band.
+r_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on r-band.
+r_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on r-band.
+r_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on r-band.
+r_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on r-band.
+r_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on r-band.
+r_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on r-band.
+r_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on r-band.
+r_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on r-band.
+r_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on r-band."
+r_blendedness_flag,boolean,,,General Failure Flag. Measured on r-band.
+r_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on r-band.
+r_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on r-band.
+r_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on r-band."
+r_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on r-band.
+r_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on r-band.
+r_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on r-band.
+r_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on r-band.
+r_calibFlux_flag,boolean,,,General Failure Flag. Measured on r-band.
+r_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on r-band.
+r_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on r-band.
+r_calib_astrometry_used,boolean,,,Propagated from sources. Measured on r-band.
+r_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on r-band.
+r_calib_photometry_used,boolean,,,Propagated from sources. Measured on r-band.
+r_calib_psf_candidate,boolean,,,Propagated from sources. Measured on r-band.
+r_calib_psf_reserved,boolean,,,Propagated from sources. Measured on r-band.
+r_calib_psf_used,boolean,,,Propagated from sources. Measured on r-band.
+r_centroid_flag,boolean,,,General Failure Flag. Measured on r-band.
+r_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on r-band.
+r_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on r-band.
+r_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on r-band.
+r_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on r-band.
+r_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on r-band.
+r_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on r-band."
+r_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on r-band.
+r_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on r-band.
+r_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on r-band.
+r_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on r-band.
+r_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on r-band."
+r_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on r-band.
+r_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on r-band.
+r_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on r-band.
+r_fwhm,double,pixel^2,,HSM moments. Measured on r-band.
+r_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on r-band.
+r_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on r-band.
+r_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on r-band.
+r_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on r-band.
+r_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on r-band.
+r_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on r-band.
+r_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on r-band.
+r_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on r-band."
+r_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on r-band.
+r_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on r-band."
+r_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on r-band."
+r_iRound_flag,double,pixel^2,,HSM moments. Measured on r-band.
+r_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on r-band."
+r_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on r-band."
+r_inputCount_flag,boolean,,,Set for any fatal failure. Forced on r-band.
+r_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on r-band.
+r_ixx,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixxPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixxRound,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixy,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixyPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_ixyRound,double,pixel^2,,HSM moments. Measured on r-band.
+r_iyy,double,pixel^2,,HSM moments. Measured on r-band.
+r_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_iyyPSF,double,pixel^2,,HSM moments. Measured on r-band.
+r_iyyRound,double,pixel^2,,HSM moments. Measured on r-band.
+r_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on r-band.
+r_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on r-band.
+r_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on r-band."
+r_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on r-band.
+r_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on r-band.
+r_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on r-band.
+r_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on r-band.
+r_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on r-band.
+r_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on r-band."
+r_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on r-band.
+r_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on r-band.
+r_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on r-band.
+r_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on r-band.
+r_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on r-band.
+r_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on r-band.
+r_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on r-band.
+r_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on r-band.
+r_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on r-band.
+r_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on r-band.
+r_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on r-band.
+r_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on r-band.
+r_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on r-band.
+r_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on r-band.
+r_pixelFlags_offimage,boolean,,,Source center is off image. Measured on r-band.
+r_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on r-band.
+r_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on r-band.
+r_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on r-band.
+r_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on r-band.
+r_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on r-band.
+r_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on r-band.
+r_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on r-band.
+r_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on r-band.
+r_psfFlux_area,float,pixel,,Effective area of PSF. Forced on r-band.
+r_psfFlux_flag,boolean,,,General Failure Flag. Forced on r-band.
+r_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on r-band.
+r_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on r-band.
+r_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on r-band.
+r_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on r-band.
+u_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on u-band.
+u_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on u-band.
+u_ap03Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on u-band.
+u_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on u-band.
+u_ap06Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on u-band.
+u_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on u-band.
+u_ap09Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on u-band.
+u_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on u-band.
+u_ap12Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on u-band.
+u_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on u-band.
+u_ap17Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on u-band.
+u_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on u-band.
+u_ap25Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on u-band.
+u_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on u-band.
+u_ap35Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on u-band.
+u_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on u-band.
+u_ap50Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on u-band.
+u_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on u-band.
+u_ap70Flux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_apFlux_flag,boolean,,,General Failure Flag. Measured on u-band.
+u_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on u-band.
+u_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on u-band.
+u_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on u-band.
+u_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on u-band.
+u_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on u-band.
+u_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on u-band.
+u_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on u-band.
+u_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on u-band.
+u_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on u-band.
+u_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on u-band.
+u_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on u-band.
+u_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on u-band."
+u_blendedness_flag,boolean,,,General Failure Flag. Measured on u-band.
+u_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on u-band.
+u_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on u-band.
+u_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on u-band."
+u_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on u-band.
+u_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on u-band.
+u_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on u-band.
+u_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on u-band.
+u_calibFlux_flag,boolean,,,General Failure Flag. Measured on u-band.
+u_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on u-band.
+u_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on u-band.
+u_calib_astrometry_used,boolean,,,Propagated from sources. Measured on u-band.
+u_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on u-band.
+u_calib_photometry_used,boolean,,,Propagated from sources. Measured on u-band.
+u_calib_psf_candidate,boolean,,,Propagated from sources. Measured on u-band.
+u_calib_psf_reserved,boolean,,,Propagated from sources. Measured on u-band.
+u_calib_psf_used,boolean,,,Propagated from sources. Measured on u-band.
+u_centroid_flag,boolean,,,General Failure Flag. Measured on u-band.
+u_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on u-band.
+u_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on u-band.
+u_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on u-band.
+u_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on u-band.
+u_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on u-band.
+u_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on u-band."
+u_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on u-band.
+u_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on u-band.
+u_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on u-band.
+u_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on u-band.
+u_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on u-band."
+u_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on u-band.
+u_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on u-band.
+u_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on u-band.
+u_fwhm,double,pixel^2,,HSM moments. Measured on u-band.
+u_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on u-band.
+u_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on u-band.
+u_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on u-band.
+u_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on u-band.
+u_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on u-band.
+u_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on u-band.
+u_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on u-band.
+u_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on u-band."
+u_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on u-band.
+u_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on u-band."
+u_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on u-band."
+u_iRound_flag,double,pixel^2,,HSM moments. Measured on u-band.
+u_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on u-band."
+u_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on u-band."
+u_inputCount_flag,boolean,,,Set for any fatal failure. Forced on u-band.
+u_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on u-band.
+u_ixx,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixxPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixxRound,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixy,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixyPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_ixyRound,double,pixel^2,,HSM moments. Measured on u-band.
+u_iyy,double,pixel^2,,HSM moments. Measured on u-band.
+u_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_iyyPSF,double,pixel^2,,HSM moments. Measured on u-band.
+u_iyyRound,double,pixel^2,,HSM moments. Measured on u-band.
+u_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on u-band.
+u_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on u-band.
+u_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on u-band."
+u_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on u-band.
+u_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on u-band.
+u_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on u-band.
+u_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on u-band.
+u_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on u-band.
+u_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on u-band."
+u_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on u-band.
+u_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on u-band.
+u_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on u-band.
+u_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on u-band.
+u_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on u-band.
+u_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on u-band.
+u_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on u-band.
+u_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on u-band.
+u_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on u-band.
+u_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on u-band.
+u_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on u-band.
+u_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on u-band.
+u_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on u-band.
+u_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on u-band.
+u_pixelFlags_offimage,boolean,,,Source center is off image. Measured on u-band.
+u_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on u-band.
+u_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on u-band.
+u_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on u-band.
+u_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on u-band.
+u_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on u-band.
+u_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on u-band.
+u_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on u-band.
+u_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on u-band.
+u_psfFlux_area,float,pixel,,Effective area of PSF. Forced on u-band.
+u_psfFlux_flag,boolean,,,General Failure Flag. Forced on u-band.
+u_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on u-band.
+u_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on u-band.
+u_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on u-band.
+u_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on u-band.
+y_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on y-band.
+y_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on y-band.
+y_ap03Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on y-band.
+y_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on y-band.
+y_ap06Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on y-band.
+y_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on y-band.
+y_ap09Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on y-band.
+y_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on y-band.
+y_ap12Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on y-band.
+y_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on y-band.
+y_ap17Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on y-band.
+y_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on y-band.
+y_ap25Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on y-band.
+y_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on y-band.
+y_ap35Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on y-band.
+y_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on y-band.
+y_ap50Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on y-band.
+y_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on y-band.
+y_ap70Flux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_apFlux_flag,boolean,,,General Failure Flag. Measured on y-band.
+y_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on y-band.
+y_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on y-band.
+y_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on y-band.
+y_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on y-band.
+y_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on y-band.
+y_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on y-band.
+y_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on y-band.
+y_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on y-band.
+y_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on y-band.
+y_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on y-band.
+y_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on y-band.
+y_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on y-band."
+y_blendedness_flag,boolean,,,General Failure Flag. Measured on y-band.
+y_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on y-band.
+y_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on y-band.
+y_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on y-band."
+y_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on y-band.
+y_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on y-band.
+y_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on y-band.
+y_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on y-band.
+y_calibFlux_flag,boolean,,,General Failure Flag. Measured on y-band.
+y_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on y-band.
+y_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on y-band.
+y_calib_astrometry_used,boolean,,,Propagated from sources. Measured on y-band.
+y_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on y-band.
+y_calib_photometry_used,boolean,,,Propagated from sources. Measured on y-band.
+y_calib_psf_candidate,boolean,,,Propagated from sources. Measured on y-band.
+y_calib_psf_reserved,boolean,,,Propagated from sources. Measured on y-band.
+y_calib_psf_used,boolean,,,Propagated from sources. Measured on y-band.
+y_centroid_flag,boolean,,,General Failure Flag. Measured on y-band.
+y_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on y-band.
+y_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on y-band.
+y_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on y-band.
+y_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on y-band.
+y_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on y-band.
+y_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on y-band."
+y_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on y-band.
+y_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on y-band.
+y_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on y-band.
+y_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on y-band.
+y_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on y-band."
+y_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on y-band.
+y_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on y-band.
+y_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on y-band.
+y_fwhm,double,pixel^2,,HSM moments. Measured on y-band.
+y_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on y-band.
+y_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on y-band.
+y_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on y-band.
+y_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on y-band.
+y_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on y-band.
+y_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on y-band.
+y_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on y-band.
+y_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on y-band."
+y_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on y-band.
+y_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on y-band."
+y_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on y-band."
+y_iRound_flag,double,pixel^2,,HSM moments. Measured on y-band.
+y_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on y-band."
+y_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on y-band."
+y_inputCount_flag,boolean,,,Set for any fatal failure. Forced on y-band.
+y_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on y-band.
+y_ixx,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixxPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixxRound,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixy,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixyPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_ixyRound,double,pixel^2,,HSM moments. Measured on y-band.
+y_iyy,double,pixel^2,,HSM moments. Measured on y-band.
+y_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_iyyPSF,double,pixel^2,,HSM moments. Measured on y-band.
+y_iyyRound,double,pixel^2,,HSM moments. Measured on y-band.
+y_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on y-band.
+y_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on y-band.
+y_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on y-band."
+y_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on y-band.
+y_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on y-band.
+y_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on y-band.
+y_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on y-band.
+y_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on y-band.
+y_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on y-band."
+y_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on y-band.
+y_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on y-band.
+y_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on y-band.
+y_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on y-band.
+y_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on y-band.
+y_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on y-band.
+y_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on y-band.
+y_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on y-band.
+y_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on y-band.
+y_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on y-band.
+y_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on y-band.
+y_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on y-band.
+y_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on y-band.
+y_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on y-band.
+y_pixelFlags_offimage,boolean,,,Source center is off image. Measured on y-band.
+y_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on y-band.
+y_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on y-band.
+y_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on y-band.
+y_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on y-band.
+y_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on y-band.
+y_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on y-band.
+y_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on y-band.
+y_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on y-band.
+y_psfFlux_area,float,pixel,,Effective area of PSF. Forced on y-band.
+y_psfFlux_flag,boolean,,,General Failure Flag. Forced on y-band.
+y_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on y-band.
+y_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on y-band.
+y_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on y-band.
+y_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on y-band.
+z_ap03Flux,double,nJy,,Flux within 3.0-pixel aperture. Forced on z-band.
+z_ap03FluxErr,double,nJy,,Flux uncertainty within 3.0-pixel aperture. Forced on z-band.
+z_ap03Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap06Flux,double,nJy,,Flux within 6.0-pixel aperture. Forced on z-band.
+z_ap06FluxErr,double,nJy,,Flux uncertainty within 6.0-pixel aperture. Forced on z-band.
+z_ap06Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap09Flux,double,nJy,,Flux within 9.0-pixel aperture. Forced on z-band.
+z_ap09FluxErr,double,nJy,,Flux uncertainty within 9.0-pixel aperture. Forced on z-band.
+z_ap09Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap12Flux,double,nJy,,Flux within 12.0-pixel aperture. Forced on z-band.
+z_ap12FluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Forced on z-band.
+z_ap12Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap17Flux,double,nJy,,Flux within 17.0-pixel aperture. Forced on z-band.
+z_ap17FluxErr,double,nJy,,Flux uncertainty within 17.0-pixel aperture. Forced on z-band.
+z_ap17Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap25Flux,double,nJy,,Flux within 25.0-pixel aperture. Forced on z-band.
+z_ap25FluxErr,double,nJy,,Flux uncertainty within 25.0-pixel aperture. Forced on z-band.
+z_ap25Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap35Flux,double,nJy,,Flux within 35.0-pixel aperture. Forced on z-band.
+z_ap35FluxErr,double,nJy,,Flux uncertainty within 35.0-pixel aperture. Forced on z-band.
+z_ap35Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap50Flux,double,nJy,,Flux within 50.0-pixel aperture. Forced on z-band.
+z_ap50FluxErr,double,nJy,,Flux uncertainty within 50.0-pixel aperture. Forced on z-band.
+z_ap50Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_ap70Flux,double,nJy,,Flux within 70.0-pixel aperture. Forced on z-band.
+z_ap70FluxErr,double,nJy,,Flux uncertainty within 70.0-pixel aperture. Forced on z-band.
+z_ap70Flux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_apFlux_flag,boolean,,,General Failure Flag. Measured on z-band.
+z_apFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on z-band.
+z_apFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on z-band.
+z_bdChi2,double,,,-ln(likelihood) (chi^2) in cmodel fit. Measured on z-band.
+z_bdE1,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on z-band.
+z_bdE2,double,pixel^2,,FracDev-weighted average of exp.ellipse and dev.ellipse. Measured on z-band.
+z_bdFluxB,double,nJy,,Flux from the de Vaucouleur fit. Measured on z-band.
+z_bdFluxBErr,double,nJy,,Flux uncertainty from the de Vaucouleur fit. Measured on z-band.
+z_bdFluxD,double,nJy,,Flux from the exponential fit. Measured on z-band.
+z_bdFluxDErr,double,nJy,,Flux uncertainty from the exponential fit. Measured on z-band.
+z_bdReB,double,pixel^2,,Half-light ellipse of the de Vaucouleur fit. Measured on z-band.
+z_bdReD,double,pixel^2,,Half-light ellipse of the exponential fit. Measured on z-band.
+z_blendedness,double,,,"Measure of how much the flux is affected by neighbors, (1 - child_flux/parent_flux). Operates on the absolute value of the pixels to try to obtain a de-noised value. See section 4.9.11 of Bosch et al. 2018, PASJ, 70, S5 for details. Measured on z-band."
+z_blendedness_flag,boolean,,,General Failure Flag. Measured on z-band.
+z_cModelFlux,double,nJy,,Flux from the final cmodel fit. Forced on z-band.
+z_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Forced on z-band.
+z_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Forced on z-band."
+z_cModel_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Forced on z-band.
+z_cModel_flag_apCorr,boolean,,,Set if unable to aperture correct modelfit_CModel. Forced on z-band.
+z_calibFlux,double,nJy,,Flux within 12.0-pixel aperture. Measured on z-band.
+z_calibFluxErr,double,nJy,,Flux uncertainty within 12.0-pixel aperture. Measured on z-band.
+z_calibFlux_flag,boolean,,,General Failure Flag. Measured on z-band.
+z_calibFlux_flag_apertureTruncated,boolean,,,Aperture did not fit within measurement image. Measured on z-band.
+z_calibFlux_flag_sincCoeffsTruncated,boolean,,,Full sinc coefficient image did not fit within measurement image. Measured on z-band.
+z_calib_astrometry_used,boolean,,,Propagated from sources. Measured on z-band.
+z_calib_photometry_reserved,boolean,,,Propagated from sources. Measured on z-band.
+z_calib_photometry_used,boolean,,,Propagated from sources. Measured on z-band.
+z_calib_psf_candidate,boolean,,,Propagated from sources. Measured on z-band.
+z_calib_psf_reserved,boolean,,,Propagated from sources. Measured on z-band.
+z_calib_psf_used,boolean,,,Propagated from sources. Measured on z-band.
+z_centroid_flag,boolean,,,General Failure Flag. Measured on z-band.
+z_centroid_x,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on z-band.
+z_centroid_xErr,float,pixel,,1-sigma uncertainty on x position. Measured on z-band.
+z_centroid_y,double,pixel,,Centroid from Sdss Centroid algorithm. Measured on z-band.
+z_centroid_yErr,float,pixel,,1-sigma uncertainty on y position. Measured on z-band.
+z_decl,double,deg,pos.eq.dec,Position in ra/dec. Measured on z-band.
+z_extendedness,double,,,"Set to 1 for extended sources, 0 for point sources. Measured on z-band."
+z_extendedness_flag,boolean,,,Set to 1 for any fatal failure. Measured on z-band.
+z_free_cModelFlux,double,nJy,,Flux from the final cmodel fit. Measured on z-band.
+z_free_cModelFluxErr,double,nJy,,Flux uncertainty from the final cmodel fit. Measured on z-band.
+z_free_cModelFlux_flag,boolean,,,Flag set if the final cmodel fit (or any previous fit) failed. Measured on z-band.
+z_free_cModelFlux_inner,double,nJy,,"Flux within the fit region, with no extrapolation. Measured on z-band."
+z_free_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Measured on z-band.
+z_free_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Measured on z-band.
+z_free_psfFlux_flag,boolean,,,General Failure Flag. Measured on z-band.
+z_fwhm,double,pixel^2,,HSM moments. Measured on z-band.
+z_gaap0p5Flux,double,nJy,,GAaP Flux with 0.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap0p5FluxErr,double,nJy,,GAaP Flux uncertainty with 0.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap0p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaap0p7Flux,double,nJy,,GAaP Flux with 0.7 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap0p7FluxErr,double,nJy,,GAaP Flux uncertainty with 0.7 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap0p7Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaap1p0Flux,double,nJy,,GAaP Flux with 1.0 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap1p0FluxErr,double,nJy,,GAaP Flux uncertainty with 1.0 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap1p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaap1p5Flux,double,nJy,,GAaP Flux with 1.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap1p5FluxErr,double,nJy,,GAaP Flux uncertainty with 1.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap1p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaap2p5Flux,double,nJy,,GAaP Flux with 2.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap2p5FluxErr,double,nJy,,GAaP Flux uncertainty with 2.5 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap2p5Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaap3p0Flux,double,nJy,,GAaP Flux with 3.0 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap3p0FluxErr,double,nJy,,GAaP Flux uncertainty with 3.0 aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaap3p0Flux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaapFlux_flag,boolean,,,Set for any fatal failure. Forced on z-band.
+z_gaapFlux_flag_edge,boolean,,,Source is too close to the edge. Forced on z-band.
+z_gaapFlux_flag_gaussianization,boolean,,,PSF Gaussianization failed when trying to scale by this factor. Forced on z-band.
+z_gaapOptimalFlux,double,nJy,,GAaP Flux with optimal aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaapOptimalFluxErr,double,nJy,,GAaP Flux uncertainty with optimal aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaapOptimalFlux_flag_bigPsf,boolean,,,The Gaussianized PSF is bigger than the aperture. Forced on z-band.
+z_gaapPsfFlux,double,nJy,,GAaP Flux with PSF aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_gaapPsfFluxErr,double,nJy,,GAaP Flux uncertainty with PSF aperture after multiplying the seeing by 1.15. Forced on z-band.
+z_hsmShapeRegauss_e1,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on z-band.
+z_hsmShapeRegauss_e2,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on z-band.
+z_hsmShapeRegauss_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on z-band."
+z_hsmShapeRegauss_sigma,double,,,PSF-corrected shear using Hirata & Seljak (2003) regaussianization. Measured on z-band.
+z_iDebiasedPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on z-band."
+z_iPSF_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on z-band."
+z_iRound_flag,double,pixel^2,,HSM moments. Measured on z-band.
+z_i_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on z-band."
+z_inputCount,int,,,"Number of images contributing at center, not including anyclipping. Forced on z-band."
+z_inputCount_flag,boolean,,,Set for any fatal failure. Forced on z-band.
+z_inputCount_flag_noInputs,boolean,,,No coadd inputs available. Forced on z-band.
+z_ixx,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixxDebiasedPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixxPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixxRound,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixy,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixyDebiasedPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixyPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_ixyRound,double,pixel^2,,HSM moments. Measured on z-band.
+z_iyy,double,pixel^2,,HSM moments. Measured on z-band.
+z_iyyDebiasedPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_iyyPSF,double,pixel^2,,HSM moments. Measured on z-band.
+z_iyyRound,double,pixel^2,,HSM moments. Measured on z-band.
+z_kronFlux,double,nJy,,Flux from Kron Flux algorithm. Measured on z-band.
+z_kronFluxErr,double,nJy,,Flux uncertainty from Kron Flux algorithm. Measured on z-band.
+z_kronFlux_flag,boolean,,,"General failure flag, set if anything went wrong. Measured on z-band."
+z_kronFlux_flag_bad_radius,boolean,,,Bad Kron radius. Measured on z-band.
+z_kronFlux_flag_bad_shape,boolean,,,Shape for measuring Kron radius is bad; used PSF shape. Measured on z-band.
+z_kronFlux_flag_bad_shape_no_psf,boolean,,,Bad shape and no PSF. Measured on z-band.
+z_kronFlux_flag_edge,boolean,,,Bad measurement due to image edge. Measured on z-band.
+z_kronFlux_flag_no_fallback_radius,boolean,,,No minimum radius and no PSF provided. Measured on z-band.
+z_kronFlux_flag_no_minimum_radius,boolean,,,"Minimum radius could not enforced, no minimum value or PSF. Measured on z-band."
+z_kronFlux_flag_small_radius,boolean,,,Measured Kron radius was smaller than that of the PSF. Measured on z-band.
+z_kronFlux_flag_used_minimum_radius,boolean,,,Used the minimum radius for the Kron aperture. Measured on z-band.
+z_kronFlux_flag_used_psf_radius,boolean,,,Used the PSF Kron radius for the Kron aperture. Measured on z-band.
+z_kronRad,float,,,Kron radius (sqrt(a*b)). Measured on z-band.
+z_pixelFlags_bad,boolean,,,Bad pixel in the Source footprint. Measured on z-band.
+z_pixelFlags_clipped,boolean,,,Source footprint includes CLIPPED pixels. Measured on z-band.
+z_pixelFlags_clippedCenter,boolean,,,Source center is close to CLIPPED pixels. Measured on z-band.
+z_pixelFlags_cr,boolean,,,Cosmic ray in the Source footprint. Measured on z-band.
+z_pixelFlags_crCenter,boolean,,,Cosmic ray in the Source center. Measured on z-band.
+z_pixelFlags_edge,boolean,,,Source is outside usable exposure region (masked EDGE or NO_DATA). Measured on z-band.
+z_pixelFlags_inexact_psf,boolean,,,Source footprint includes INEXACT_PSF pixels. Measured on z-band.
+z_pixelFlags_inexact_psfCenter,boolean,,,Source center is close to INEXACT_PSF pixels. Measured on z-band.
+z_pixelFlags_interpolated,boolean,,,Interpolated pixel in the Source footprint. Measured on z-band.
+z_pixelFlags_interpolatedCenter,boolean,,,Interpolated pixel in the Source center. Measured on z-band.
+z_pixelFlags_offimage,boolean,,,Source center is off image. Measured on z-band.
+z_pixelFlags_saturated,boolean,,,Saturated pixel in the Source footprint. Measured on z-band.
+z_pixelFlags_saturatedCenter,boolean,,,Saturated pixel in the Source center. Measured on z-band.
+z_pixelFlags_sensor_edge,boolean,,,Source footprint includes SENSOR_EDGE pixels. Measured on z-band.
+z_pixelFlags_sensor_edgeCenter,boolean,,,Source center is close to SENSOR_EDGE pixels. Measured on z-band.
+z_pixelFlags_suspect,boolean,,,Sources footprint includes suspect pixels. Measured on z-band.
+z_pixelFlags_suspectCenter,boolean,,,Sources center is close to suspect pixels. Measured on z-band.
+z_psfFlux,double,nJy,,Flux derived from linear least-squares fit of PSF model. Forced on z-band.
+z_psfFluxErr,double,nJy,,Flux uncertainty derived from linear least-squares fit of PSF model. Forced on z-band.
+z_psfFlux_area,float,pixel,,Effective area of PSF. Forced on z-band.
+z_psfFlux_flag,boolean,,,General Failure Flag. Forced on z-band.
+z_psfFlux_flag_apCorr,boolean,,,Set if unable to aperture correct base_PsfFlux. Forced on z-band.
+z_psfFlux_flag_edge,boolean,,,Object was too close to the edge of the image to use the full PSF model. Forced on z-band.
+z_psfFlux_flag_noGoodPixels,boolean,,,Not enough non-rejected pixels in data to attempt the fit. Forced on z-band.
+z_ra,double,deg,pos.eq.ra,Position in ra/dec. Measured on z-band.
