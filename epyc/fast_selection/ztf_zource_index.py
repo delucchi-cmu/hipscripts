@@ -1,9 +1,10 @@
 import hipscat_import.pipeline as runner
-from hipscat_import.index.arguments import IndexArguments
 import numpy as np
+from hipscat_import.index.arguments import IndexArguments
+
 
 def create_index():
-    divisions = np.arange(start = 71150119096299949, stop = 215050952450164082, step = 30604175532510)
+    divisions = np.arange(start=71150119096299949, stop=215050952450164082, step=30604175532510)
     divisions = np.append(divisions, 215050952450164082)
     divisions = divisions.tolist()
 
@@ -23,6 +24,7 @@ def create_index():
     )
     print("args generated")
     runner.pipeline(args)
+
 
 if __name__ == "__main__":
     create_index()

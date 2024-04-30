@@ -1,14 +1,13 @@
+import glob
 import os
 
+import hipscat_import.cross_match.run_macauff_import as runner
+from dask.distributed import Client
 from hipscat.catalog.association_catalog.association_catalog import AssociationCatalog
 from hipscat.io import file_io
-
-import hipscat_import.cross_match.run_macauff_import as runner
 from hipscat_import.catalog.file_readers import CsvReader
 from hipscat_import.cross_match.macauff_arguments import MacauffArguments
 from hipscat_import.cross_match.macauff_metadata import from_yaml
-from dask.distributed import Client
-import glob
 
 
 def gaia_to_catwise_schema():
@@ -17,6 +16,7 @@ def gaia_to_catwise_schema():
     matches_schema_file = "macauff_GaiaDR3xCatWISE2020_matches.parquet"
     single_metadata = file_io.read_parquet_metadata(matches_schema_file)
     schema = single_metadata.schema.to_arrow_schema()
+
 
 def gaia_to_catwise_2309():
     macauff_data_dir = "/data3/epyc/data3/hipscat/raw/macauff_results/rds/project/iris_vol3/rds-iris-ip005/tjw/dr3_catwise_allskytest/output_csvs/"
@@ -55,6 +55,7 @@ def gaia_to_catwise_2309():
 
     ## Check that the association data can be parsed as a valid association catalog.
     catalog = AssociationCatalog.read_from_hipscat(args.catalog_path)
+
 
 if __name__ == "__main__":
     gaia_to_catwise_2309()

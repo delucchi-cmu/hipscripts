@@ -1,4 +1,4 @@
-'''
+"""
 detailedCatalog_matchDec50_00N__70_00N.csv
 SumMagAper2.csv
 SumMagAuto.csv
@@ -12,15 +12,15 @@ detailedCatalog_matchDec50_00S__30_00S.csv
 detailedCatalog_matchDec70_00S__50_00S.csv
 detailedCatalog_matchDec90_00S__70_00S.csv
 detailedCatalog_matchDec70_00N__90_00N.csv
-'''
+"""
 
 """Main method to enable command line execution
 """
 
 import hipscat_import.run_import as runner
+import pandas as pd
 from hipscat_import.arguments import ImportArguments
 from hipscat_import.file_readers import CsvReader
-import pandas as pd
 
 if __name__ == "__main__":
 
@@ -33,23 +33,24 @@ if __name__ == "__main__":
 
     args = ImportArguments(
         catalog_name="hst_detailed",
-        input_file_list=["/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec10_00N__10_00N.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec10_00N__30_00N.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec50_00N__70_00N.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec30_00N__50_00N.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec30_00S__10_00S.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec50_00S__30_00S.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec70_00S__50_00S.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec90_00S__70_00S.csv",
-                         "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec70_00N__90_00N.csv"
-                         ],
+        input_file_list=[
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec10_00N__10_00N.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec10_00N__30_00N.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec50_00N__70_00N.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec30_00N__50_00N.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec30_00S__10_00S.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec50_00S__30_00S.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec70_00S__50_00S.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec90_00S__70_00S.csv",
+            "/data3/epyc/data3/hipscat/raw/hst/detailedCatalog_matchDec70_00N__90_00N.csv",
+        ],
         input_format="csv",
         file_reader=CsvReader(
             header=None,
             column_names=type_frame["name"].values.tolist(),
             type_map=type_map,
             chunksize=500_000,
-            usecols=names
+            usecols=names,
         ),
         ra_column="MatchRA",
         dec_column="MatchDec",

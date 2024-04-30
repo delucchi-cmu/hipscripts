@@ -1,11 +1,12 @@
-import hipscat_import.pipeline as runner
-from hipscat_import.catalog.arguments import ImportArguments
-from hipscat_import.catalog.file_readers import ParquetReader, InputReader
-from dask.distributed import Client
-import pyarrow.parquet as pq
-import pyarrow as pa
-import re
 import glob
+import re
+
+import hipscat_import.pipeline as runner
+import pyarrow as pa
+import pyarrow.parquet as pq
+from dask.distributed import Client
+from hipscat_import.catalog.arguments import ImportArguments
+from hipscat_import.catalog.file_readers import InputReader, ParquetReader
 
 
 class ZubercalParquetReader(ParquetReader):
@@ -16,7 +17,7 @@ class ZubercalParquetReader(ParquetReader):
             - it is identical to the ``objectid`` column, and is just bloat
             - it is non-unique, and that makes it tricky when splitting the file up
         - the files are written out by band, and the band is included in the file
-          name (but not as a field in the resulting data product). this uses a 
+          name (but not as a field in the resulting data product). this uses a
           regular expression to parse out the band and insert it as a column in
           the dataframe.
         - the parquet files are all a fine size for input files, so we don't mess
@@ -38,7 +39,10 @@ class ZubercalParquetReader(ParquetReader):
         files = glob.glob(f"{input_file}/**.parquet")
         files.sort()
         for file in files:
-            if file == "/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/ztf_0065_1990_g.parquet":
+            if (
+                file
+                == "/epyc/data/ztf_matchfiles/zubercal_dr16/atua.caltech.edu/F0065/ztf_0065_1990_g.parquet"
+            ):
                 continue
             match = re.match(r".*ztf_[\d]+_[\d]+_([gir]).parquet", str(file))
             band = match.group(1)

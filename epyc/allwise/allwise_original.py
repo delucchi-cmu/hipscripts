@@ -1,14 +1,14 @@
 """Main method to enable command line execution
 """
 
-import hipscat_import.pipeline as runner
-from hipscat_import.catalog.arguments import ImportArguments
-from hipscat_import.catalog.file_readers import CsvReader
-import pandas as pd
 import glob
 
-if __name__ == "__main__":
+import hipscat_import.pipeline as runner
+import pandas as pd
+from hipscat_import.catalog.arguments import ImportArguments
+from hipscat_import.catalog.file_readers import CsvReader
 
+if __name__ == "__main__":
 
     # Load the column names and types from a side file.
     type_frame = pd.read_csv("allwise_types.csv")

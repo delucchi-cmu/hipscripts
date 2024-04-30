@@ -1,8 +1,10 @@
-from hipscat.catalog.catalog import Catalog
-from hipscat.catalog.partition_info import  PartitionInfo
-from hipscat.io.parquet_metadata import write_parquet_metadata
-import time
 import os
+import time
+
+from hipscat.catalog.catalog import Catalog
+from hipscat.catalog.partition_info import PartitionInfo
+from hipscat.io.parquet_metadata import write_parquet_metadata
+
 
 def do_stuff1():
     start = time.perf_counter()
@@ -14,13 +16,13 @@ def do_stuff1():
     print("num partitions:", len(partition_info.get_healpix_pixels()))
 
     end = time.perf_counter()
-    print(f'finished task in {int(end-start)} s')
+    print(f"finished task in {int(end-start)} s")
     start = end
 
     partition_info2 = PartitionInfo.read_from_file(os.path.join(catalog_path, "_metadata"))
     print("num partitions:", len(partition_info2.get_healpix_pixels()))
     end = time.perf_counter()
-    print(f'finished task in {int(end-start)} s')
+    print(f"finished task in {int(end-start)} s")
     start = end
 
     set1 = set(partition_info.get_healpix_pixels())
@@ -29,8 +31,9 @@ def do_stuff1():
     print(set2.difference(set1))
 
     end = time.perf_counter()
-    print(f'finished task in {int(end-start)} s')
+    print(f"finished task in {int(end-start)} s")
     start = end
+
 
 def do_stuff2():
     start = time.perf_counter()
@@ -39,13 +42,12 @@ def do_stuff2():
 
     write_parquet_metadata(catalog_path)
     end = time.perf_counter()
-    print(f'finished task in {int(end-start)} s')
+    print(f"finished task in {int(end-start)} s")
     start = end
     catalog = Catalog.read_from_hipscat(catalog_path)
     end = time.perf_counter()
-    print(f'finished task in {int(end-start)} s')
+    print(f"finished task in {int(end-start)} s")
     start = end
-
 
 
 if __name__ == "__main__":

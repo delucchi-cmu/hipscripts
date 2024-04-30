@@ -20,7 +20,7 @@ if __name__ == "__main__":
     print(f'healpix orders: {partition_data["Norder"].unique()}')
     print(f'num partitions: {len(partition_data["Npix"])}')
     print(f'total rows: {partition_data["num_rows"].sum()}')
-    print('------')
+    print("------")
     print(f'min rows: {partition_data["num_rows"].min()}')
     print(f'max rows: {partition_data["num_rows"].max()}')
     print(f'object ratio: {partition_data["num_rows"].max()/partition_data["num_rows"].min()}')

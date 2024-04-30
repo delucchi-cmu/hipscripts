@@ -1,6 +1,5 @@
 """Main method to enable command line execution"""
 
-
 import partitioner.dask_runner as dr
 from partitioner.arguments import PartitionArguments
 

@@ -15,15 +15,15 @@ required group field_id=-1 schema {
 >> python3 ztf_epyc.py &> log.txt
 """
 
-import pandas as pd
-
 import hipscat_import.dask_map_reduce as runner
+import pandas as pd
 from hipscat_import.arguments import ImportArguments
 
 
 def filter_duplicates(data: pd.DataFrame) -> pd.DataFrame:
     """Remove rows where dup is true"""
     return data[data.dup == 0]
+
 
 if __name__ == "__main__":
     args = ImportArguments()

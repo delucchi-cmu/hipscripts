@@ -9,7 +9,9 @@ import pyarrow.parquet as pq
 if __name__ == "__main__":
     s = time.time()
 
-    file_name = "/home/delucchi/git/hipscat-import/tests/hipscat_import/data/association/intermediate/partitions.csv"
+    file_name = (
+        "/home/delucchi/git/hipscat-import/tests/hipscat_import/data/association/intermediate/partitions.csv"
+    )
     sum_column = "primary_id"
 
     data_frame = pd.read_csv(file_name)

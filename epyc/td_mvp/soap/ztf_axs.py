@@ -37,5 +37,6 @@ def create_association_ps1():
     )
     runner.pipeline(args)
 
+
 if __name__ == "__main__":
     create_association_ps1()

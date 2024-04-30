@@ -1,6 +1,7 @@
 import hipscat_import.pipeline as runner
 from hipscat_import.margin_cache.margin_cache_arguments import MarginCacheArguments
 
+
 def make_margins():
     args = MarginCacheArguments(
         input_catalog_path="/data3/epyc/data3/hipscat/catalogs/gaia_dr3/gaia",
@@ -13,6 +14,7 @@ def make_margins():
         completion_email_address="delucchi@andrew.cmu.edu",
     )
     runner.pipeline(args)
+
 
 if __name__ == "__main__":
     make_margins()

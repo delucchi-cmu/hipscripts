@@ -1,13 +1,12 @@
-import pandas as pd
+import glob
 
 import hipscat_import.catalog.run_import as runner
 import pandas as pd
-import glob
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dask.distributed import Client
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import CsvReader
-from dask.distributed import Client
 
 
 def import_objects(client):
@@ -37,9 +36,7 @@ def import_objects(client):
     type_map = dict(zip(type_frame["name"], type_frame["type"]))
     type_names = type_frame["name"].values.tolist()
 
-    in_file_paths = glob.glob(
-        "/data3/epyc/data3/hipscat/raw/pan_starrs/detection/detection**.csv"
-    )
+    in_file_paths = glob.glob("/data3/epyc/data3/hipscat/raw/pan_starrs/detection/detection**.csv")
     in_file_paths.sort()
     print(len(in_file_paths))
     args = ImportArguments(
@@ -110,7 +107,7 @@ def send_completion_email():
 
 if __name__ == "__main__":
     import ray
-    from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
+    from ray.util.dask import disable_dask_on_ray, enable_dask_on_ray
 
     context = ray.init(
         num_cpus=12,

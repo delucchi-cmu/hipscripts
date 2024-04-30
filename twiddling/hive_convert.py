@@ -12,9 +12,7 @@ def run(in_catalog_path, out_catalog_path):
     ## Get the original partition info
     partition_info_filename = os.path.join(in_catalog_path, "partition_info.csv")
     if not os.path.exists(partition_info_filename):
-        raise FileNotFoundError(
-            f"No partition info found where expected: {partition_info_filename}"
-        )
+        raise FileNotFoundError(f"No partition info found where expected: {partition_info_filename}")
 
     original_info = pd.read_csv(partition_info_filename).copy()
     original_info["Dir"] = [int(x / 10_000) * 10_000 for x in original_info["pixel"]]
@@ -40,9 +38,7 @@ def run(in_catalog_path, out_catalog_path):
     ## Format and write new partition info file
     partition_info = (
         original_info.astype(int)
-        .rename(
-            columns={"order": "Norder", "pixel": "Npix", "num_objects": "row_count"}
-        )
+        .rename(columns={"order": "Norder", "pixel": "Npix", "num_objects": "row_count"})
         .reindex(["Norder", "Dir", "Npix", "row_count"], axis=1)
     )
 

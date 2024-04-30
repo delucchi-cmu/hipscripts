@@ -15,15 +15,13 @@ required group field_id=-1 schema {
 >> python3 ztf_epyc.py &> log.txt
 """
 
-import pandas as pd
-
 import hipscat_import.catalog.run_import as runner
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dask.distributed import Client
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import ParquetReader
-from dask.distributed import Client
 
 
 def filter_duplicates(data: pd.DataFrame) -> pd.DataFrame:

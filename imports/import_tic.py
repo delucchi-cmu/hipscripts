@@ -4,9 +4,8 @@
 
 import tempfile
 
-import pandas as pd
-
 import hipscat_import.run_import as runner
+import pandas as pd
 from hipscat_import.arguments import ImportArguments
 from hipscat_import.file_readers import CsvReader
 

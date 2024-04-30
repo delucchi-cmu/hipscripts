@@ -1,11 +1,9 @@
 import hipscat_import.pipeline as runner
-from hipscat_import.index.arguments import IndexArguments
-
 import ray
-from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
-from dask.distributed import Client
-
 from dask.diagnostics import ProgressBar
+from dask.distributed import Client
+from hipscat_import.index.arguments import IndexArguments
+from ray.util.dask import disable_dask_on_ray, enable_dask_on_ray
 
 
 def create_index_ray():
@@ -33,6 +31,7 @@ def create_index_ray():
 
     disable_dask_on_ray()
 
+
 def create_index():
     ProgressBar().register()
     args = IndexArguments(
@@ -48,6 +47,7 @@ def create_index():
         completion_email_address="delucchi@andrew.cmu.edu",
     )
     runner.pipeline(args)
+
 
 if __name__ == "__main__":
     create_index()
