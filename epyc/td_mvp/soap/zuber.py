@@ -19,5 +19,6 @@ def create_association():
     )
     runner.pipeline(args)
 
+
 if __name__ == "__main__":
     create_association()

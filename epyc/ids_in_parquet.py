@@ -1,8 +1,8 @@
 import argparse
 import sys
 import time
-import numpy as np
 
+import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
 

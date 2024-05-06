@@ -1,10 +1,10 @@
-import hipscat_import.pipeline as runner
-from hipscat_import.index.arguments import IndexArguments
-
-import ray
-from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
-from dask.distributed import Client
 import dask
+import hipscat_import.pipeline as runner
+import ray
+from dask.distributed import Client
+from hipscat_import.index.arguments import IndexArguments
+from ray.util.dask import disable_dask_on_ray, enable_dask_on_ray
+
 
 def create_index_ray():
 
@@ -12,9 +12,13 @@ def create_index_ray():
         num_cpus=12,
         _temp_dir="/data3/epyc/projects3/mmd11/ray",
     )
-    dask.config.set({"dataframe.shuffle.method": "disk",
-                     "dataframe.shuffle.algorithm": "disk",
-                     "shuffle": "disk"})
+    dask.config.set(
+        {
+            "dataframe.shuffle.method": "disk",
+            "dataframe.shuffle.algorithm": "disk",
+            "shuffle": "disk",
+        }
+    )
 
     enable_dask_on_ray()
     args = IndexArguments(
@@ -38,11 +42,12 @@ def create_index_ray():
 
     disable_dask_on_ray()
 
+
 def create_index():
 
     import numpy as np
 
-    divisions = np.arange(start = 71150119096299949, stop = 215050952450164082, step = 30604175532510)
+    divisions = np.arange(start=71150119096299949, stop=215050952450164082, step=30604175532510)
     divisions = np.append(divisions, 215050952450164082)
 
     args = IndexArguments(
@@ -59,6 +64,7 @@ def create_index():
         completion_email_address="delucchi@andrew.cmu.edu",
     )
     runner.pipeline(args)
+
 
 if __name__ == "__main__":
     create_index()

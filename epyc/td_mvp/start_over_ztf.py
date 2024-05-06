@@ -1,11 +1,11 @@
-import pandas as pd
-
 import glob
 import os
-from dask.distributed import Client, as_completed
-from tqdm import tqdm
+
+import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dask.distributed import Client, as_completed
+from tqdm import tqdm
 
 #### -----------------
 ## Columns that will be repeated per object
@@ -91,9 +91,7 @@ def per_file(file_index):
 
     parquet_file = pq.read_table(input_paths[0])
 
-    for index, smaller_table in enumerate(
-        parquet_file.to_batches(max_chunksize=25_000)
-    ):
+    for index, smaller_table in enumerate(parquet_file.to_batches(max_chunksize=25_000)):
         out_path = os.path.join(
             "/data3/epyc/data3/hipscat/raw/axs_ztf_shards_pivot/",
             f"part-{str(file_index).zfill(5)}-sub-{str(index).zfill(3)}.parquet",

@@ -21,9 +21,7 @@ if __name__ == "__main__":
     source_frame["object_id"] = source_frame["object_id"].astype("object")
 
     for i in range(0, 131):
-        object_ids = np.full(
-            131, fill_value=object_frame["id"][i], dtype=np.int64
-        ).tolist()
+        object_ids = np.full(131, fill_value=object_frame["id"][i], dtype=np.int64).tolist()
         source_frame.at[i, "object_id"] = object_ids
     source_frame = source_frame.explode(["object_id"])
 
@@ -70,8 +68,7 @@ if __name__ == "__main__":
 
     ## write it out
     source_frame.to_csv(
-        "/home/delucchi/git/hipscat-import/tests/"
-        "hipscat_import/data/small_sky/small_sky_source.csv",
+        "/home/delucchi/git/hipscat-import/tests/" "hipscat_import/data/small_sky/small_sky_source.csv",
         index=False,
     )
 

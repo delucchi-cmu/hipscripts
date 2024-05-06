@@ -2,6 +2,7 @@
 
 """
 
+import glob
 import tempfile
 
 import hipscat_import.pipeline as runner
@@ -10,8 +11,6 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from astropy.table import Table
 from hipscat_import.catalog.arguments import ImportArguments
-import glob
-
 
 
 def do_import():
@@ -20,7 +19,7 @@ def do_import():
     # files.sort()
     args = ImportArguments(
         output_catalog_name="sdss_dr16q",
-        # input_file_list=files,        
+        # input_file_list=files,
         # file_reader=FitsReader(
         #     chunksize=100_000,
         #     skip_column_names=MULTIDIMENSIONAL,

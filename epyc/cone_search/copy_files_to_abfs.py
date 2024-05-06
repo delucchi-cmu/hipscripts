@@ -12,7 +12,7 @@ def copy_files_to_abfs():
     cloud_root = "abfs://hipscat/benchmarks/catwise2020/"
     local_root = "/epyc/projects3/sam_hipscat/catwise2020/catwise2020/"
 
-    paths_to_copy = ["catalog_info.json","_metadata","_common_metadata"]
+    paths_to_copy = ["catalog_info.json", "_metadata", "_common_metadata"]
 
     destination_fs, _ = get_fs(cloud_root, storage_options=target_so)
     chunksize = 1024 * 1024
@@ -33,5 +33,3 @@ def copy_files_to_abfs():
 if __name__ == "__main__":
     # pylint: disable=invalid-name,duplicate-key
     copy_files_to_abfs()
-
-   

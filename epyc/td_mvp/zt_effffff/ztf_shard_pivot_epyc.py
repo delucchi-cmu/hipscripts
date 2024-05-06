@@ -1,11 +1,11 @@
-import pandas as pd
-
 import glob
 import os
-from dask.distributed import Client, as_completed
-from tqdm import tqdm
+
+import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dask.distributed import Client, as_completed
+from tqdm import tqdm
 
 #### -----------------
 ## Columns that will be repeated per object

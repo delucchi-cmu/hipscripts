@@ -15,16 +15,13 @@ required group field_id=-1 schema {
 >> python3 ztf_epyc.py &> log.txt
 """
 
-import pandas as pd
-
 import hipscat_import.catalog.run_import as runner
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dask.distributed import Client
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import ParquetReader
-from dask.distributed import Client
-
 
 #### -----------------
 ## Columns that will be repeated per object
@@ -47,9 +44,7 @@ REPEATED_COLUMNS = [
 def import_objects(client):
     args = ImportArguments(
         catalog_name="ztf_dr14",
-        input_file_list=[
-            "/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"
-        ],
+        input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
         file_reader=ParquetReader(
             chunksize=50_000,
             columns=REPEATED_COLUMNS,
@@ -129,9 +124,7 @@ def transform_sources(data: pd.DataFrame) -> pd.DataFrame:
 def import_sources(client):
     args = ImportArguments(
         catalog_name="ztf_source",
-        input_file_list=[
-            "/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"
-        ],
+        input_file_list=["/data3/epyc/data3/hipscat/catalogs/ztf_dr14/Norder=1/Dir=0/Npix=33.parquet"],
         file_reader=ParquetReader(chunksize=100_000),
         ra_column="ra",
         dec_column="dec",

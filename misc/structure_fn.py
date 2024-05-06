@@ -1,9 +1,8 @@
 import time
 
+from catalog.catalog import Catalog
 from lsstseries import ensemble
 from lsstseries.analysis.stetsonj import calc_stetson_J
-
-from catalog.catalog import Catalog
 
 if __name__ == "__main__":
     start = time.perf_counter()

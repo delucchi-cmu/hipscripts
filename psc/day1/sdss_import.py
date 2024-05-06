@@ -43,5 +43,6 @@ def do_import():
     ) as client:
         runner.pipeline_with_client(args, client)
 
+
 if __name__ == "__main__":
     do_import()

@@ -1,6 +1,5 @@
-import pandas as pd
-
 import hipscat_import.pipeline as runner
+import pandas as pd
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import CsvReader
 

@@ -12,11 +12,10 @@ from dask.distributed import Client
 from hipscat_import.catalog.arguments import ImportArguments
 from tqdm import tqdm
 
+
 def convert():
     ## 094, 109, 125, 211, 240
-    files = glob.glob(
-        "/ocean/projects/phy210048p/shared/hipscat/raw/sdss/calibObj**.fits.gz"
-    )
+    files = glob.glob("/ocean/projects/phy210048p/shared/hipscat/raw/sdss/calibObj**.fits.gz")
     files.sort()
     print("found", len(files), "fits files")
 

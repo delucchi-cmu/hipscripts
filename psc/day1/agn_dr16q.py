@@ -10,9 +10,7 @@ from tqdm import tqdm
 def convert():
     base_dir = "/home/delucchi/td_data/agns/"
 
-    table = Table.read(
-        os.path.join(base_dir, "dr16q_prop_May16_2023.fits.gz"), memmap=True
-    )
+    table = Table.read(os.path.join(base_dir, "dr16q_prop_May16_2023.fits.gz"), memmap=True)
 
     total_rows = len(table)
     print("total_rows", total_rows)
@@ -40,9 +38,7 @@ def convert():
                     # print("    ", arr_name)
                     new_table.add_column(data_t[index], name=arr_name)
 
-        new_table.to_pandas().to_parquet(
-            os.path.join(base_dir, f"dr16q_prop_May16_2023_{chunk_num}.parquet")
-        )
+        new_table.to_pandas().to_parquet(os.path.join(base_dir, f"dr16q_prop_May16_2023_{chunk_num}.parquet"))
         print("wrote chunk", chunk_num)
         chunk_num += 1
 

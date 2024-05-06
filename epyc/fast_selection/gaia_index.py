@@ -1,6 +1,7 @@
 import hipscat_import.pipeline as runner
-from hipscat_import.index.arguments import IndexArguments
 import numpy as np
+from hipscat_import.index.arguments import IndexArguments
+
 
 def create_index():
 
@@ -9,14 +10,13 @@ def create_index():
     # divisions = [f"Gaia DR3 {i}" for i in range(10000, 99999, 12)]
     # divisions.append("Gaia DR3 999999988604363776")
 
+    global_min = 4295806720
+    global_max = 6917528997577384320
+    num_row_groups = 3933
 
-    global_min= 4295806720
-    global_max= 6917528997577384320
-    num_row_groups =3933
+    increment = int((global_max - global_min) / num_row_groups)
 
-    increment = int((global_max-global_min)/num_row_groups)
-
-    divisions = np.append(np.arange(start = global_min, stop = global_max, step = increment), global_max)
+    divisions = np.append(np.arange(start=global_min, stop=global_max, step=increment), global_max)
     divisions = divisions.tolist()
 
     args = IndexArguments(
@@ -36,6 +36,7 @@ def create_index():
     )
     runner.pipeline(args)
 
+
 def create_index_10():
 
     # import numpy as np
@@ -43,14 +44,13 @@ def create_index_10():
     # divisions = [f"Gaia DR3 {i}" for i in range(10000, 99999, 12)]
     # divisions.append("Gaia DR3 999999988604363776")
 
+    global_min = 4295806720
+    global_max = 6917528997577384320
+    num_row_groups = 10
 
-    global_min= 4295806720
-    global_max= 6917528997577384320
-    num_row_groups =10
+    increment = int((global_max - global_min) / num_row_groups)
 
-    increment = int((global_max-global_min)/num_row_groups)
-
-    divisions = np.append(np.arange(start = global_min, stop = global_max, step = increment), global_max)
+    divisions = np.append(np.arange(start=global_min, stop=global_max, step=increment), global_max)
     divisions = divisions.tolist()
 
     args = IndexArguments(

@@ -1,10 +1,10 @@
-import hipscat_import.pipeline as runner
-from hipscat_import.margin_cache.margin_cache_arguments import MarginCacheArguments
-
-import ray
-from ray.util.dask import enable_dask_on_ray, disable_dask_on_ray
-from dask.distributed import Client
 import dask
+import hipscat_import.pipeline as runner
+import ray
+from dask.distributed import Client
+from hipscat_import.margin_cache.margin_cache_arguments import MarginCacheArguments
+from ray.util.dask import disable_dask_on_ray, enable_dask_on_ray
+
 
 def create_margin():
     args = MarginCacheArguments(
@@ -18,6 +18,7 @@ def create_margin():
         completion_email_address="delucchi@andrew.cmu.edu",
     )
     runner.pipeline(args)
+
 
 if __name__ == "__main__":
     create_margin()

@@ -1,44 +1,41 @@
-import pandas as pd
-
-import hipscat_import.pipeline as runner
-from hipscat_import.catalog.arguments import ImportArguments
-from hipscat_import.catalog.file_readers import ParquetReader
+import glob
+import os
+import re
 
 import hipscat
-import os
 import hipscat_import.pipeline as runner
+import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 from hipscat_import.catalog.arguments import ImportArguments
 from hipscat_import.catalog.file_readers import ParquetReader
-import pyarrow.parquet as pq
-import pyarrow as pa
-import re
-import glob
+
 
 class DirectoryParquetReader(ParquetReader):
     def read(self, input_file):
         """Reader for the specifics of zubercal parquet files."""
-        keep_columns=["index",
-                "ps1_objid",
-                "ra",
-                "dec",
-                "ps1_gMeanPSFMag",
-                "ps1_rMeanPSFMag",
-                "ps1_iMeanPSFMag",
-                "nobs_g",
-                "nobs_r",
-                "nobs_i",
-                "mean_mag_g",
-                "mean_mag_r",
-                "mean_mag_i",
-                "catflags",
-                "fieldID",
-                "mag",
-                "magerr",
-                "mjd",
-                "rcID",
-                "band",
-                ]
-
+        keep_columns = [
+            "index",
+            "ps1_objid",
+            "ra",
+            "dec",
+            "ps1_gMeanPSFMag",
+            "ps1_rMeanPSFMag",
+            "ps1_iMeanPSFMag",
+            "nobs_g",
+            "nobs_r",
+            "nobs_i",
+            "mean_mag_g",
+            "mean_mag_r",
+            "mean_mag_i",
+            "catflags",
+            "fieldID",
+            "mag",
+            "magerr",
+            "mjd",
+            "rcID",
+            "band",
+        ]
 
         ## Find all the parquet files in the directory
         files = glob.glob(f"{input_file}/**.parquet")
@@ -47,13 +44,17 @@ class DirectoryParquetReader(ParquetReader):
         for file in files:
             yield pd.read_parquet(file, columns=keep_columns).reset_index(drop=True)
 
+
 def do_import():
 
     catalog_dir = "/data3/epyc/data3/hipscat/catalogs/ztf_axs/ztf_source/"
     catalog = hipscat.read_from_hipscat(catalog_dir)
     info_frame = catalog.partition_info.as_dataframe()
     groups = info_frame.groupby(["Norder", "Dir"])
-    paths = [os.path.join(catalog_dir, f"Norder={group_index[0]}", f"Dir={group_index[1]}") for group_index, _ in groups]
+    paths = [
+        os.path.join(catalog_dir, f"Norder={group_index[0]}", f"Dir={group_index[1]}")
+        for group_index, _ in groups
+    ]
 
     args = ImportArguments(
         output_path="/data3/epyc/data3/hipscat/catalogs/ztf_axs/",
