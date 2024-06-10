@@ -12,6 +12,7 @@ runs:
       shell: bash
     - name: Get pip version
       run: echo "pypi_version=$(get_pypi_latest_version ${{inputs.package_name}})" >> $GITHUB_ENV
+      shell: bash
     - name: Echo Versions
       run: | 
         echo conda version=$conda_version
