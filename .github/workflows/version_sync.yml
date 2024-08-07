@@ -22,12 +22,12 @@ jobs:
         - name: hipscat version check
           uses: ./.github/actions/check_versions
           with: 
-            package-name: hipscat
+            package_name: hipscat
         - name: hipscat-import version check
           uses: ./.github/actions/check_versions
           with: 
-            package-name: hipscat-import
+            package_name: hipscat-import
         - name: lsdb version check
           uses: ./.github/actions/check_versions
           with: 
-            package-name: lsdb
+            package_name: lsdb

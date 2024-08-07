@@ -1,19 +1,25 @@
+name: 'check_versions'
+description: 'Composite action to check versions of a package'
 inputs:
-  package-name:
+  package_name:
     description: 'Name of package'
     required: true
 runs:
   using: "composite"
   steps:
     - name: Get conda version
-      run: echo "conda_version=$(conda search -c conda-forge ${{package-name}} | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+      run: echo "conda_version=$(conda search -c conda-forge ${{inputs.package_name}} | tail -n1 | awk '{print $2}')" >> $GITHUB_ENV
+      shell: bash
     - name: Get pip version
-      run: echo "pypi_version=$(get_pypi_latest_version ${{package-name}})" >> $GITHUB_ENV
+      run: echo "pypi_version=$(get_pypi_latest_version ${{inputs.package_name}})" >> $GITHUB_ENV
+      shell: bash
     - name: Echo Versions
       run: | 
         echo conda version=$conda_version
         echo pypi version=$pypi_version
+      shell: bash
     
     - name: Fail if versions do not match
       if: ${{ env.conda_version != env.pypi_version }}
       run: exit 1
+      shell: bash
