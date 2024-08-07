@@ -86,3 +86,28 @@ Beans. I forgot to send stdout to a file.
     sys     283m43.416s
 
 These are all failing because I need a schema file.
+
+# July 2024 - all over again
+
+## allwise
+
+For *reasons*, this ran on baldur.
+
+    Mapping   : 100%|██████████| 48/48 [3:12:07<00:00, 240.16s/it]
+    Binning   : 100%|██████████| 2/2 [00:43<00:00, 21.59s/it]
+    Splitting : 100%|██████████| 48/48 [5:32:44<00:00, 415.93s/it]
+    Reducing  : 100%|██████████| 6816/6816 [3:28:26<00:00,  1.83s/it]
+    
+Also, encountered this issue: https://github.com/astronomy-commons/hipscat-import/issues/342
+
+## neowise
+
+Also ran on baldur:
+
+    $ time python run_neowise.py &> neowise.out
+
+    real    4980m56.617s
+    user    33871m7.706s
+    sys     2686m28.816s
+
+I hadn't fixed the JSON issue above, so run into that again.
