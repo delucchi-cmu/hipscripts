@@ -44,13 +44,21 @@ def create_index(client):
 
 def join_to_photometry():
     left_table = dd.read_parquet(
-        path="/data3/epyc/data3/hats/catalogs/gaia_dr3/gaia_id_radec_index",
+        path="/data3/epyc/data3/hats/catalogs/gaia_dr3/gaia_id_radec_index/dataset",
         engine="pyarrow",
-        filesystem="arrow",
     )
 
-
     files = glob.glob("/data3/epyc/data3/hipscat/raw/gaia/epoch_photometry/Epoch**")
+
+    single_file = "/data3/epyc/data3/hipscat/raw/gaia/epoch_parquet/epoch_data_786097-786431.parquet"
+
+    parquet_file = pq.ParquetFile(single_file)
+    schema = parquet_file.schema.to_arrow_schema()
+    schema = (
+        schema.insert(0, pa.field("_healpix_29", pa.int64()))
+        .append(pa.field("ra", pa.float32()))
+        .append(pa.field("dec", pa.float32()))
+    )
 
     for file in tqdm(files):
         match = re.match(r".*EpochPhotometry_([\d]+-[\d]+).csv.gz", str(file))
@@ -93,6 +101,6 @@ if __name__ == "__main__":
         n_workers=12,
         threads_per_worker=1,
     )
-    create_index(client)
+    # create_index(client)
     join_to_photometry()
     import_catalog(client)

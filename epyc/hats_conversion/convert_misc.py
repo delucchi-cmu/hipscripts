@@ -15,7 +15,7 @@ def convert_existing():
 
     with Client(
         local_directory="/data3/epyc/data3/hats/tmp/",
-        n_workers=10,
+        n_workers=30,
         threads_per_worker=1,
     ) as client:
         subcatalog = "des_dr2"

@@ -110,6 +110,20 @@ was A LOT of massaging that went into this dataset.
 
 This could take 5-15 hours.
 
+## WISE
+
+starting subcatalog allwise
+
+    Converting parquet: 100%|██████████| 6816/6816 [16:05<00:00,  7.06it/s]
+
+    Finishing :   0%|          | 0/4 [00:00<?, ?it/s]
+    Finishing :  25%|██▌       | 1/4 [05:55<17:46, 355.52s/it]
+    Finishing : 100%|██████████| 4/4 [05:57<00:00, 89.41s/it]
+
+starting subcatalog neowise_yr8
+
+    Converting parquet:   2%|▏         | 478/20010 [04:32<5:01:13,  1.08it/s]
+
 ## Other catalogs
 
 starting subcatalog des_dr2
@@ -123,4 +137,9 @@ starting subcatalog alerce_nested
 
 starting subcatalog erosita
 
-FileNotFoundError: [Errno 2] No such file or directory: '/astro/store/epyc3/projects3/max_hipscat/erosita/catalog_info.json'
+    Converting parquet: 100%|██████████| 10/10 [00:10<00:00,  1.04s/it]
+
+    Finishing :   0%|          | 0/4 [00:00<?, ?it/s]
+    Finishing :  25%|██▌       | 1/4 [00:01<00:03,  1.23s/it]
+    Finishing : 100%|██████████| 4/4 [00:01<00:00,  3.04it/s]
+    Finishing : 100%|██████████| 4/4 [00:01<00:00,  2.52it/s]
