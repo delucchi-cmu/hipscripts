@@ -44,9 +44,9 @@ def tic_margins():
 
 def ztf_dr14_margins():
     args = MarginCacheArguments(
-        input_catalog_path="/data3/epyc/data3/hats/catalogs/ztf_dr14/ztf_dr14",
+        input_catalog_path="/data3/epyc/data3/hats/catalogs/ztf_dr14/ztf_object",
         output_path="/data3/epyc/data3/hats/catalogs/coarse_margins",
-        output_artifact_name="ztf_dr14_10arcs",
+        output_artifact_name="ztf_object_10arcs",
         margin_threshold=10,
         dask_n_workers=30,
         dask_threads_per_worker=1,
@@ -57,4 +57,6 @@ def ztf_dr14_margins():
 
 
 if __name__ == "__main__":
-    make_margins_distance()
+    # make_margins_distance()
+    # tic_margins()
+    ztf_dr14_margins()
