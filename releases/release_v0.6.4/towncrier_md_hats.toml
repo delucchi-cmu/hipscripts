@@ -1,0 +1,35 @@
+
+[tool.towncrier]
+directory = "hats/changes"
+filename = "NEWS.rst"
+package = "hats"
+package_dir = "hats/src"
+start_string = "<!-- towncrier release notes start -->"
+underlines = ["", "", ""]
+issue_format = "[#{issue}](https://github.com/astronomy-commons/hats/issues/{issue})"
+template="../template.md"
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removal"
+name = "Deprecations and Removals"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "misc"
+name = "Misc"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bugfixes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "doc"
+name = "Improved Documentation"
+showcontent = true
