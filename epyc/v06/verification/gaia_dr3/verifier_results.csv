@@ -1,0 +1,39 @@
+# HATS verification results for
+# /data3/epyc/data3/hats/catalogs/v06/gaia_dr3/gaia
+# Package versions: hats v0.6; hats-import v0.6.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/06/12 15:38:42 UTC,True,valid hats,gaia,Test hats.io.validation.is_valid_catalog.,[]
+2025/06/12 15:38:42 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/06/12 15:38:42 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (1,046,834) vs catalog properties (1,046,834).",[]
+2025/06/12 15:38:42 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (1,046,834) vs _metadata (1,046,834).",[]
+2025/06/12 15:38:42 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/12 15:38:42 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/12 15:38:42 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /data3/epyc/data3/hats/catalogs/v06/gaia_dr3/gaia
+# Package versions: hats v0.6; hats-import v0.6.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/06/13 12:42:47 UTC,True,valid hats,gaia,Test hats.io.validation.is_valid_catalog.,[]
+2025/06/13 12:42:47 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/06/13 12:44:40 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (1,812,731,847) vs catalog properties (1,812,731,847).",[]
+2025/06/13 12:44:40 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (1,812,731,847) vs _metadata (1,812,731,847).",[]
+2025/06/13 12:44:40 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/13 12:44:40 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/13 12:44:40 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /data3/epyc/data3/hats/catalogs/v06/gaia_dr3/gaia
+# Package versions: hats v0.6; hats-import v0.6.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/06/16 13:24:24 UTC,True,valid hats,gaia,Test hats.io.validation.is_valid_catalog.,[]
+2025/06/16 13:24:24 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/06/16 13:26:13 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (1,812,731,847) vs catalog properties (1,812,731,847).",[]
+2025/06/16 13:26:13 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (1,812,731,847) vs _metadata (1,812,731,847).",[]
+2025/06/16 13:26:13 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/16 13:26:13 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/06/16 13:26:13 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
