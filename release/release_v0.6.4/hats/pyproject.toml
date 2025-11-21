@@ -1,0 +1,83 @@
+
+[project]
+name = "hats"
+license = {file = "LICENSE"}
+description = "Hierarchical Adaptive Tiling Scheme Catalog"
+readme = "README.md"
+authors = [
+    { name = "LINCC Frameworks", email = "lincc-frameworks-team@lists.lsst.org" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+dynamic = ["version"]
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.8.0", # http filesystem support
+    "astropy>=6.1.5",
+    "cdshealpix>=0.7.0",
+    "fsspec>=2023.10.0", # Used for abstract filesystems
+    "jproperties>=2.0.0",
+    "matplotlib>=3.10.1",
+    "mocpy>=0.17.1",
+    "nested-pandas>=0.4.1",
+    "numba>=0.58",
+    "numpy>=2,<3", 
+    "pandas>=2.0",
+    "pyarrow>=14.0.1,!=19.0.0",
+    "pydantic>=2.0",
+    "scipy>=1.7.2",
+    "typing-extensions>=4.3.0",
+    "universal-pathlib>=0.2.2",
+]
+
+[project.urls]
+"Source Code" = "https://github.com/astronomy-commons/hats"
+
+# On a mac, install optional dependencies with `pip install '.[dev]'` (include the single quotes)
+[project.optional-dependencies]
+dev = [
+    "asv==0.6.4", # Used to compute performance benchmarks
+    "black", # Used for static linting of files
+    "jupyter", # Clears output from Jupyter notebooks
+    "pre-commit", # Used to run checks before finalizing a git commit
+    "pylint", # Used for static linting of files
+    "pytest",
+    "pytest-cov", # Used to report total code coverage
+    "pytest-mock", # Used to mock objects in tests
+    "pytest-timeout", # Used to test for code efficiency
+]
+
+[build-system]
+requires = [
+    "setuptools>=62", # Used to build and package the Python project
+    "setuptools_scm>=6.2", # Gets release version from git. Makes it available programmatically
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "src/hats/_version.py"
+
+[tool.pytest.ini_options]
+timeout = 5
+testpaths = [
+    "tests",
+    "src",
+    "docs",
+]
+addopts = "--doctest-modules --doctest-glob=*.rst"
+
+[tool.coverage.run]
+omit=["src/hats/_version.py"]
+
+[tool.black]
+line-length = 110
+target-version = ["py310"]
+[tool.isort]
+profile = "black"
+line_length = 110
