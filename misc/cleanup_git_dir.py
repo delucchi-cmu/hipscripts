@@ -39,6 +39,7 @@ def git_status(sub_dir):
             f"git -C {sub_dir} status", stderr=subprocess.STDOUT, text=True, shell=True
         )
         if "nothing to commit, working tree clean" not in total_content:
+            print("   *", sub_dir.name)
             for line in total_content.split("\n"):
                 print(f"           \033[91m{line}\033[0m")
 
@@ -61,7 +62,7 @@ def do():
 
             
             mtime_timestamp = get_newest_dir_update(file_path)
-            print("   last updated", mtime_timestamp)
+            print("   * last updated", mtime_timestamp)
 
             if (file_path / ".git").exists():
                 git_status(file_path)
