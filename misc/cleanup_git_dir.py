@@ -1,7 +1,8 @@
-from pathlib import Path
-from datetime import datetime
-import human_readable
 import subprocess
+from datetime import datetime
+from pathlib import Path
+
+import human_readable
 
 
 def get_newest_dir_update(directory_path: Path) -> Path | None:
@@ -33,6 +34,7 @@ def get_newest_dir_update(directory_path: Path) -> Path | None:
 
     return human_readable.date_time(datetime.now() - human_readable_mtime)
 
+
 def git_status(sub_dir):
     if sub_dir.is_dir():
         total_content = subprocess.check_output(
@@ -58,9 +60,8 @@ def do():
                 print(file_path.relative_to(start_path))
             else:
                 sub_dir_strs = [str(sub_dir.relative_to(file_path)) for sub_dir in sub_dirs]
-                print(file_path.relative_to(start_path), "(",", ".join(sub_dir_strs),")")
+                print(file_path.relative_to(start_path), "(", ", ".join(sub_dir_strs), ")")
 
-            
             mtime_timestamp = get_newest_dir_update(file_path)
             print("   * last updated", mtime_timestamp)
 
