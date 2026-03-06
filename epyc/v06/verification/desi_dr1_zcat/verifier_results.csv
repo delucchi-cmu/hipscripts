@@ -1,0 +1,26 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/desi_dr1_zcat/desi_dr1_zcat
+# Package versions: hats v0.8.1; hats-import v0.8.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2026/02/06 18:59:25 UTC,True,valid hats,desi_dr1_zcat,Test hats.io.validation.is_valid_collection.,[]
+2026/02/06 18:59:25 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2026/02/06 18:59:25 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (28,425,963) vs catalog properties (28,425,963).",[]
+2026/02/06 18:59:25 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (28,425,963) vs _metadata (28,425,963).",[]
+2026/02/06 18:59:25 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/06 18:59:25 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/06 18:59:25 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/desi_dr1_zcat/desi_dr1_zcat
+# Package versions: hats v0.8.1; hats-import v0.8.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2026/02/06 19:03:58 UTC,True,valid hats,desi_dr1_zcat,Test hats.io.validation.is_valid_collection.,[]
+2026/02/06 19:03:58 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2026/02/06 19:03:58 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (28,425,963) vs catalog properties (28,425,963).",[]
+2026/02/06 19:03:58 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (28,425,963) vs _metadata (28,425,963).",[]
+2026/02/06 19:03:58 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/06 19:03:58 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/06 19:03:58 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]

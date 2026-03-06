@@ -1,0 +1,52 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/wise/allwise_collection/allwise
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/14 15:43:42 UTC,True,valid hats,allwise_collection,Test hats.io.validation.is_valid_collection.,[]
+2025/11/14 15:43:42 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/14 15:43:43 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (747,634,026) vs catalog properties (747,634,026).",[]
+2025/11/14 15:43:43 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (747,634,026) vs _metadata (747,634,026).",[]
+2025/11/14 15:43:43 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/14 15:43:43 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/14 15:43:44 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/wise/allwise_collection/allwise
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/17 20:04:39 UTC,True,valid hats,allwise_collection,Test hats.io.validation.is_valid_collection.,[]
+2025/11/17 20:04:39 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/17 20:04:45 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (747,634,026) vs catalog properties (747,634,026).",[]
+2025/11/17 20:04:45 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (747,634,026) vs _metadata (747,634,026).",[]
+2025/11/17 20:04:45 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:04:45 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:04:45 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/wise/allwise_collection/allwise
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/17 20:05:24 UTC,True,valid hats,allwise,Test hats.io.validation.is_valid_catalog.,[]
+2025/11/17 20:05:24 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/17 20:05:26 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (747,634,026) vs catalog properties (747,634,026).",[]
+2025/11/17 20:05:26 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (747,634,026) vs _metadata (747,634,026).",[]
+2025/11/17 20:05:26 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:05:26 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:05:26 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/wise/allwise_collection/allwise
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/17 20:22:47 UTC,True,valid hats,allwise,Test hats.io.validation.is_valid_catalog.,[]
+2025/11/17 20:22:47 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/17 20:22:56 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (747,634,026) vs catalog properties (747,634,026).",[]
+2025/11/17 20:22:56 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (747,634,026) vs _metadata (747,634,026).",[]
+2025/11/17 20:22:56 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:22:56 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/17 20:22:56 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]

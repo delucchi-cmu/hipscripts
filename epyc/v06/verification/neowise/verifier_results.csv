@@ -1,0 +1,13 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/wise/neowise_collection/neowise
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/21 19:59:24 UTC,True,valid hats,neowise,Test hats.io.validation.is_valid_catalog.,[]
+2025/11/21 19:59:25 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/21 20:10:04 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (18,668,416,994) vs catalog properties (18,668,416,994).",[]
+2025/11/21 20:10:04 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (18,668,416,994) vs _metadata (18,668,416,994).",[]
+2025/11/21 20:10:04 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/21 20:10:04 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/21 20:10:05 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]

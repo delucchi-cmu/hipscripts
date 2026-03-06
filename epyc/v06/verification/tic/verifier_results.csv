@@ -1,0 +1,28 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/tic/tic
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: 1727987580
+datetime,passed,test,target,description,bad_files
+2025/11/24 20:38:52 UTC,True,valid hats,tic,Test hats.io.validation.is_valid_collection.,[]
+2025/11/24 20:38:52 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/24 20:38:53 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (1,727,987,580) vs catalog properties (1,727,987,580).",[]
+2025/11/24 20:38:53 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (1,727,987,580) vs _metadata (1,727,987,580).",[]
+2025/11/24 20:38:53 UTC,True,num rows,file footers vs truth,"Test that number of rows are equal. file footers (1,727,987,580) vs user-provided truth (1,727,987,580).",[]
+2025/11/24 20:38:53 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/24 20:38:53 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/24 20:38:54 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/tic/tic
+# Package versions: hats v0.7.1; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: 1727987580
+datetime,passed,test,target,description,bad_files
+2025/11/25 12:52:12 UTC,True,valid hats,tic,Test hats.io.validation.is_valid_collection.,[]
+2025/11/25 12:52:12 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/25 12:52:42 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (1,727,987,580) vs catalog properties (1,727,987,580).",[]
+2025/11/25 12:52:42 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (1,727,987,580) vs _metadata (1,727,987,580).",[]
+2025/11/25 12:52:42 UTC,True,num rows,file footers vs truth,"Test that number of rows are equal. file footers (1,727,987,580) vs user-provided truth (1,727,987,580).",[]
+2025/11/25 12:52:42 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/25 12:52:42 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/25 12:52:43 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]

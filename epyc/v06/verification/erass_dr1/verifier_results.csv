@@ -1,0 +1,13 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/v06/erass_dr1/erass_dr1
+# Package versions: hats v0.8.1; hats-import v0.8.0
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2026/02/09 16:20:26 UTC,True,valid hats,erass_dr1,Test hats.io.validation.is_valid_collection.,[]
+2026/02/09 16:20:26 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2026/02/09 16:20:26 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (930,203) vs catalog properties (930,203).",[]
+2026/02/09 16:20:26 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (930,203) vs _metadata (930,203).",[]
+2026/02/09 16:20:26 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/09 16:20:26 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2026/02/09 16:20:26 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]

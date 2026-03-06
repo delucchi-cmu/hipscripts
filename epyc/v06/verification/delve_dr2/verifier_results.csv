@@ -1,0 +1,26 @@
+# HATS verification results for
+# /epyc/data3/hats/catalogs/delve/delve_dr2_collection/delve_dr2
+# Package versions: hats v0.7.0; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/12 20:55:28 UTC,True,valid hats,delve_dr2_collection,Test hats.io.validation.is_valid_collection.,[]
+2025/11/12 20:55:28 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/12 20:55:29 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (2,500,247,752) vs catalog properties (2,500,247,752).",[]
+2025/11/12 20:55:29 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (2,500,247,752) vs _metadata (2,500,247,752).",[]
+2025/11/12 20:55:29 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/12 20:55:29 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/12 20:55:29 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
+# HATS verification results for
+# /epyc/data3/hats/catalogs/delve/delve_dr2_collection/delve_dr2
+# Package versions: hats v0.7.0; hats-import v0.7.1.dev4+g91d6b7dc5
+# User-supplied truth schema: None
+# User-supplied truth total rows: None
+datetime,passed,test,target,description,bad_files
+2025/11/12 20:57:05 UTC,True,valid hats,delve_dr2_collection,Test hats.io.validation.is_valid_collection.,[]
+2025/11/12 20:57:05 UTC,True,file sets,_metadata vs data files,Test that files in _metadata match the data files on disk.,[]
+2025/11/12 20:57:06 UTC,True,num rows,file footers vs catalog properties,"Test that number of rows are equal. file footers (2,500,247,752) vs catalog properties (2,500,247,752).",[]
+2025/11/12 20:57:06 UTC,True,num rows,file footers vs _metadata,"Test that number of rows are equal. file footers (2,500,247,752) vs _metadata (2,500,247,752).",[]
+2025/11/12 20:57:06 UTC,True,schema,_common_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/12 20:57:06 UTC,True,schema,_metadata vs truth,"Test that schemas are equal, excluding metadata.",[]
+2025/11/12 20:57:06 UTC,True,schema,file footers vs truth,"Test that schemas are equal, excluding metadata.",[]
