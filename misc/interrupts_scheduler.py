@@ -4,7 +4,8 @@ from tabulate import tabulate
 
 
 def make_guesses():
-    schedule_in = pd.read_csv("./interrupts.csv")
+    schedule_in = pd.read_csv("./interrupts.csv", parse_dates=["Week"], date_format="mixed")
+    schedule_in.to_csv("./interrupts.csv", date_format='%-m/%-d/%Y', index=False)
     past_schedule = schedule_in["Name"]
 
     team = ["Doug", "Kostya", "Melissa", "Olivia", "Sandro", "Sean", ""]
@@ -42,6 +43,8 @@ def make_guesses():
     schedule_in["Name"] = past_schedule
     schedule_in = schedule_in.where(pd.notnull(schedule_in), None)
     print(tabulate(schedule_in[["Week", "Name"]], headers="keys", showindex=False, missingval=""))
+
+    schedule_in.to_csv("./schedule_out.csv", date_format='%-m/%-d/%Y', index=False)
 
 
 if __name__ == "__main__":
