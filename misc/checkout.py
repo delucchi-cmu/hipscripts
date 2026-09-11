@@ -5,7 +5,7 @@ import questionary
 project_list = ["hats", "hats-import", "lsdb", "hats-cloudtests"]
 
 
-def do_questions(subdir_arg = None):
+def do_questions(subdir_arg=None):
     subdir = questionary.text("Give me a subdirectory name:", default=subdir_arg).ask()
     project_choice = questionary.checkbox(
         "Which projects are you installing today?",

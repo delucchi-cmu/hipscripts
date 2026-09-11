@@ -4,24 +4,26 @@ import re
 
 
 def reformat_line(input):
-    line_pattern = re.compile(r"\* (.*) by @([\w\-]*) in (.*/(\d*))")
+    line_pattern = re.compile(r"\* (.*) by @([\w\-\[\]]*) in (.*/(\d*))")
     match = line_pattern.match(input)
     if match:
         description = match.group(1)
         pr_author = match.group(2)
         pr_url = match.group(3)
         pr_num = match.group(4)
-        if pr_author not in ("dependabot"):
+        if pr_author not in ("dependabot", "dependabot[bot]"):
             ## Suppress bot authors
             print(f"* [[{pr_num}]({pr_url})] {description}")
     else:
         print(input)
 
 
-def reformat(github_org, github_project):
-    api_url = f"https://api.github.com/repos/{github_org}/{github_project}/releases/latest"
+def reformat(github_org, github_project, github_tag):
+    api_url = f"https://api.github.com/repos/{github_org}/{github_project}/releases/{github_tag}"
+    print(api_url)
     response = requests.get(api_url)
     response_json = response.json()
+    print(response_json)
     print("======================")
     print("ORIGINAL CONTENT")
     print("======================")
@@ -42,10 +44,15 @@ def reformat(github_org, github_project):
 if __name__ == "__main__":
     github_org = "astronomy-commons"
     github_project = "hats"
+    github_tag = "latest"
     if len(sys.argv) == 2:
         github_project = sys.argv[1]
     elif len(sys.argv) == 3:
         github_org = sys.argv[1]
         github_project = sys.argv[2]
+    elif len(sys.argv) == 4:
+        github_org = sys.argv[1]
+        github_project = sys.argv[2]
+        github_tag = f"tags/{sys.argv[3]}"
 
-    reformat(github_org, github_project)
+    reformat(github_org, github_project, github_tag)
