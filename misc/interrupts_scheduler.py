@@ -8,7 +8,7 @@ def make_guesses():
     schedule_in.to_csv("./interrupts.csv", date_format="%-m/%-d/%Y", index=False)
     past_schedule = schedule_in["Name"]
 
-    team = ["Doug", "Kostya", "Melissa", "Olivia", "Sandro", "Sean", ""]
+    team = ["Doug", "Heather", "Kostya", "Melissa", "Olivia", "Sandro", "Sean", ""]
     past_schedule = past_schedule[past_schedule.isin(team)]
     ## Set up the "next up" from the last known selection
     next_up = past_schedule.iloc[-1]
